@@ -12,6 +12,8 @@ namespace Weapon
 
             if (cooldownTimer <= 0)
             {
+                WeaponKnockback(weaponKnockbackAmount);
+                Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 0.25f);
                 Projectile newProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();
                 newProjectile.transform.Rotate(Vector3.up, Random.Range(-offsetRange.x, offsetRange.x));
                 newProjectile.transform.Rotate(Vector3.right, Random.Range(-offsetRange.y, offsetRange.y));
@@ -23,6 +25,11 @@ namespace Weapon
         public override WeaponType GetWeaponType()
         {
             return WeaponType.ASSAULT_RIFLE;
+        }
+
+        private void LateUpdate()
+        {
+            WeaponRotation();
         }
     }
 }

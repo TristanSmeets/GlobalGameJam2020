@@ -116,6 +116,10 @@ MonoBehaviour:
     FireRate: 2
     FireRange: 100
     ProjectileSpeed: 200
+  weaponKnockbackAmount: -55
+  weaponKnockbackSpeed: 30
+  weaponUnKnockbackSpeed: 5
+  weaponKnockbackAngle: 0
 --- !u!1 &1001086176057128781
 GameObject:
   m_ObjectHideFlags: 0

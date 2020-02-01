@@ -3,34 +3,39 @@
 public class HealthComponent : MonoBehaviour
 {
     private float maxHealth = 100.0f;
-    private float health = 100.0f;
+    private float currentHealth = 100.0f;
 
     private void OnEnable()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
 
     public void ChangeHealth(float delta)
     {
-        health += delta;
-        if (health > maxHealth)
+        currentHealth += delta;
+        if (currentHealth > maxHealth)
         {
-            health = maxHealth;
+            currentHealth = maxHealth;
         }
     }
 
     public bool IsAlive()
     {
-        return health > 0;
+        return currentHealth > 0;
     }
 
     public void ResetHealth()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
 
     public void SetMaxHealth(float value)
     {
         maxHealth = value;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

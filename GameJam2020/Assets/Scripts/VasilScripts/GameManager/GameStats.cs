@@ -45,12 +45,12 @@ public class GameStats : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Joystick1Button7) && !_roundInProgress && _roundHasEnded)
+        if((Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.Joystick1Button7)) && !_roundInProgress && _roundHasEnded)
         {
-            NextRound();
 
             if(OnRoundStart != null)
                 OnRoundStart();
+            NextRound();
         }
 
         if(!_roundInProgress)

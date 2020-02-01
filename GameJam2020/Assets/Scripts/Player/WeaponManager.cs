@@ -8,7 +8,7 @@ namespace Player
     public class WeaponManager : MonoBehaviour
     {
         [SerializeField] private GameObject[] weapons = new GameObject[0];
-        [SerializeField] private Transform WeaponSpawn;
+        [SerializeField] private Transform WeaponSpawn = null;
         private GameObject currentWeapon = null;
 
         public void SwitchWeapon(WeaponType weaponType)

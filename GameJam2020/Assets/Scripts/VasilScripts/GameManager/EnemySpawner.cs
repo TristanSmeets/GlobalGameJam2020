@@ -37,7 +37,8 @@ public class EnemySpawner : MonoBehaviour
         if(_enemySpawnTimer > 0)
             return;
 
-        GameObject go = Instantiate(_enemyPrefabs[0]);
+        int randEnemy = Random.Range(0, _enemyPrefabs.Length);
+        GameObject go = Instantiate(_enemyPrefabs[randEnemy]);
         int point = Random.Range(0, 100);
         Vector3 spawnPosition = new Vector3(_playerTransform.position.x + _radius * Mathf.Cos(point), _playerTransform.position.y, _playerTransform.position.z + _radius * Mathf.Sin(point));
         RaycastHit hit;

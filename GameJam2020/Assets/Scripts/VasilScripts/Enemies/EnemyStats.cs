@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
     [Header("\t\t\t\tHealth Settings")]
+    [SerializeField]
     private int _baseHealth;
+    [SerializeField]
     private int _baseStunHealth;
     [Header("\t\t\t\tAttack Settings")]
+    [SerializeField]
     private int _baseDamage;
+    [SerializeField]
     private float _attackRange;
+    [SerializeField]
     private float _waitTimeAfterAttack;
 
     [HideInInspector]

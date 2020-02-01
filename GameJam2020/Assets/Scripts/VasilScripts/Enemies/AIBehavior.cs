@@ -24,6 +24,7 @@ public abstract class AIBehavior : MonoBehaviour
     protected bool _isChasing = false;
     protected bool _isAttacking = false;
     protected bool _isStunned = false;
+    protected bool _shouldDie;
 
     private float _waitTimer;
     private float _stunTimer;
@@ -52,10 +53,20 @@ public abstract class AIBehavior : MonoBehaviour
                     _currentAIState = AIState.Chasing;
                 }
                 break;
+
             case AIState.Chasing:
+                if(_aiMoveToTarget.GetDistanceToTarget() <= _enemyStats.AttackRange)
+                {
+                    if(_aiMoveToTarget.GetVelocity().magnitude <= 1)
+                    {
+                        Attack();
+                    }
+                }
                 break;
+
             case AIState.Attacking:
                 break;
+
             case AIState.Stunned:
                 _stunTimer -= Time.deltaTime;
                 if(_stunTimer <= 0)
@@ -80,7 +91,6 @@ public abstract class AIBehavior : MonoBehaviour
     protected virtual void Attack()
     {
         _currentAIState = AIState.Attacking;
-        Wait(_enemyStats.WaitTimeAfterAttack);
     }
 
     protected virtual void Stun(float pStunDuration)
@@ -89,13 +99,13 @@ public abstract class AIBehavior : MonoBehaviour
         _stunTimer = pStunDuration;
     }
 
-    protected virtual void TakeDamage(int pHealthDamage, int pStunDamage)
+    public virtual void TakeDamage(int pHealthDamage, int pStunDamage)
     {
         _enemyStats.CurrentHealth -= pHealthDamage;
         _enemyStats.CurrentStunHealth -= pStunDamage;
         if(_enemyStats.CurrentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            _shouldDie = true;
         }
         else if(_enemyStats.CurrentStunHealth <= 0)
         {
@@ -104,7 +114,7 @@ public abstract class AIBehavior : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         _gameStats.EnemiesInLevel.Remove(this.gameObject);
     }

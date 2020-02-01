@@ -11,15 +11,18 @@ public class AIExplodeBoyBehavior : AIBehavior
     {
         base.Start();
         SphereCollider[] cols = GetComponents<SphereCollider>();
-        for(int i = 0; i < cols.Length; i++)
+        if(cols.Length > 0)
         {
-            if(cols[i].isTrigger)
+            for(int i = 0; i < cols.Length; i++)
             {
-                _deathCollider = cols[i];
-                break;
+                if(cols[i].isTrigger)
+                {
+                    _deathCollider = cols[i];
+                    _deathCollider.enabled = false;
+                    break;
+                }
             }
         }
-        _deathCollider.enabled = false;
     }
 
     protected override void Update()
@@ -42,6 +45,10 @@ public class AIExplodeBoyBehavior : AIBehavior
     private void Explode()
     {
         //Play explode animation and destroy afterwards
+        if(!GetComponent<Collider>().isTrigger)
+        {
+            GetComponent<Collider>().enabled = false;
+        }
         transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 10;
         if(transform.localScale.x >= 3)
         {
@@ -54,10 +61,15 @@ public class AIExplodeBoyBehavior : AIBehavior
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Enemy")
+        if(other.GetComponent<AIBehavior>())
         {
             if(_deathCollider.enabled)
-                other.gameObject.GetComponent<AIBehavior>().TakeDamage(_enemyStats.Damage, 100);
+                other.gameObject.GetComponent<AIBehavior>().TakeDamage(_enemyStats.Damage / 2, 100);
+        }
+        else if(other.GetComponent<IDamageable>() != null)
+        {
+            if(_deathCollider.enabled)
+                other.gameObject.GetComponent<IDamageable>().TakeDamage(_enemyStats.Damage);
         }
     }
 }

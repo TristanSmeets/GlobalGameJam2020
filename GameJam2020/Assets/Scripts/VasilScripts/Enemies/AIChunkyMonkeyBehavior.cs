@@ -66,6 +66,11 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                         _grenadeTossTimer = _grenadeTossCooldown;
                         _gotGrenadeTossPos = false;
                     }
+
+                    if(_animationTime <= 0.25f)
+                    {
+                        _normalAttackCollider.enabled = true;
+                    }
                 }
 
                 if(_animationTime > 0)
@@ -75,6 +80,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                 _animationTime = 1;
                 _gotGrenadeTossPos = false;
                 _enemyStats.AttackRange = _normalAttackRange;
+                _normalAttackCollider.enabled = false;
                 Wait(_enemyStats.WaitTimeAfterAttack);
                 break;
         }
@@ -84,5 +90,16 @@ public class AIChunkyMonkeyBehavior : AIBehavior
     {
         GameObject go = Instantiate(_grenadePrefab, transform.position + transform.forward * 0.2f, Quaternion.identity);
         go.GetComponent<GrenadeTravel>().Init(pTargetLocation, _grenadeFuseTime, _grenadeDamage);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<IDamageable>() != null)
+        {
+            if(_normalAttackCollider.enabled)
+            {
+                other.GetComponent<IDamageable>().TakeDamage(_enemyStats.Damage);
+            }
+        }
     }
 }

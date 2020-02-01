@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3217596437713195362}
   - component: {fileID: 3217596437713195363}
   - component: {fileID: 304187719}
+  - component: {fileID: 1855992020}
   m_Layer: 0
   m_Name: Zerg
   m_TagString: Enemy
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 3217596437713195371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 3217596438018377759}
   m_Father: {fileID: 0}
@@ -165,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preparationForAttackDuration: 0.5
-  _jumpCooldown: 10
   _normalAttackRange: 2
+  _jumpCooldown: 10
   _jumpAttackRange: 6
 --- !u!54 &304187719
 Rigidbody:
@@ -184,6 +185,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!136 &1855992020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217596437713195371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!1 &3217596438018377758
 GameObject:
   m_ObjectHideFlags: 0

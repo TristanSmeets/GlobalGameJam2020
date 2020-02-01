@@ -19,15 +19,18 @@ public class GrenadeTravel : MonoBehaviour
     void Start()
     {
         SphereCollider[] cols = GetComponents<SphereCollider>();
-        for(int i = 0; i < cols.Length; i++)
+        if(cols.Length > 0)
         {
-            if(cols[i].isTrigger)
+            for(int i = 0; i < cols.Length; i++)
             {
-                _damageCollider = cols[i];
-                break;
+                if(cols[i].isTrigger)
+                {
+                    _damageCollider = cols[i];
+                    _damageCollider.enabled = false;
+                    break;
+                }
             }
         }
-        _damageCollider.enabled = false;
     }
 
     void Update()
@@ -46,7 +49,6 @@ public class GrenadeTravel : MonoBehaviour
 
         if(_currentStartPoint == _waypoints.Length - 2)
         {
-            print("asd");
             _shouldExplode = true;
         }
 
@@ -87,7 +89,13 @@ public class GrenadeTravel : MonoBehaviour
     {
         if(other.GetComponent<AIBehavior>())
         {
-            other.GetComponent<AIBehavior>().TakeDamage(_damage / 2, 100);
+            if(_damageCollider.enabled)
+                other.GetComponent<AIBehavior>().TakeDamage(_damage / 2, 100);
+        }
+        else if(other.GetComponent<IDamageable>() != null)
+        {
+            if(_damageCollider.enabled)
+                other.GetComponent<IDamageable>().TakeDamage(_damage);
         }
     }
 }

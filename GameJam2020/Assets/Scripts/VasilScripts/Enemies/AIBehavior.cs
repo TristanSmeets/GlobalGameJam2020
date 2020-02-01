@@ -19,6 +19,7 @@ public abstract class AIBehavior : MonoBehaviour
     protected NavMeshAgent _navMeshAgent;
     protected EnemyStats _enemyStats;
     protected GameStats _gameStats;
+    protected CapsuleCollider _normalAttackCollider;
 
     protected bool _isWaiting = false;
     protected bool _isChasing = false;
@@ -37,6 +38,20 @@ public abstract class AIBehavior : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _enemyStats = GetComponent<EnemyStats>();
         _gameStats = GameObject.Find("GameManager").GetComponent<GameStats>();
+
+        CapsuleCollider[] capsuleCols = GetComponents<CapsuleCollider>();
+        if(capsuleCols.Length > 0)
+        {
+            for(int i = 0; i < capsuleCols.Length; i++)
+            {
+                if(capsuleCols[i].isTrigger)
+                {
+                    _normalAttackCollider = capsuleCols[i];
+                    _normalAttackCollider.enabled = false;
+                    break;
+                }
+            }
+        }
 
         _gameStats.EnemiesInLevel.Add(this.gameObject);
         _gameStats.RemainingEnemiesInWave--;

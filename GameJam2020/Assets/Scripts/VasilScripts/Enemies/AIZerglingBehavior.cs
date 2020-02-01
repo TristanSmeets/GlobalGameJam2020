@@ -63,6 +63,11 @@ public class AIZerglingBehavior : AIBehavior
                         transform.position = Vector3.Slerp(transform.position, _jumpToPos, Time.deltaTime * 10);
                         _jumpTimer = _jumpCooldown;
                     }
+
+                    if(_animationTime <= 0.25f)
+                    {
+                        _normalAttackCollider.enabled = true;
+                    }
                 }
 
                 if(_animationTime > 0)
@@ -71,8 +76,20 @@ public class AIZerglingBehavior : AIBehavior
                 _preparationForAttackTimer = _preparationForAttackDuration;
                 _animationTime = 1;
                 _gotJumpPos = false;
+                _normalAttackCollider.enabled = false;
                 Wait(_enemyStats.WaitTimeAfterAttack);
                 break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<IDamageable>() != null)
+        {
+            if(_normalAttackCollider.enabled)
+            {
+                other.GetComponent<IDamageable>().TakeDamage(_enemyStats.Damage);
+            }
         }
     }
 }

@@ -148,8 +148,8 @@ MonoBehaviour:
   _baseHealth: 35
   _baseStunHealth: 50
   _baseDamage: 10
-  _attackRange: 2
-  _waitTimeAfterAttack: 1
+  _attackRange: 6
+  _waitTimeAfterAttack: 0.5
   CurrentHealth: 0
   CurrentStunHealth: 0
 --- !u!114 &3217596437713195363
@@ -164,6 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6ebde13d01d5543834fa7abe3a6e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _preparationForAttackDuration: 0.5
+  _jumpCooldown: 10
+  _normalAttackRange: 2
+  _jumpAttackRange: 6
 --- !u!54 &304187719
 Rigidbody:
   m_ObjectHideFlags: 0

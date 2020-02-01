@@ -2,15 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIExplodeBoyBehavior : AudioBehaviour
+public class AIExplodeBoyBehavior : AIBehavior
 {
-    void Start()
-    {
+    private SphereCollider _deathCollider;
+    private int _shouldDieInFrames = 2;
 
+    protected override void Start()
+    {
+        base.Start();
+        SphereCollider[] cols = GetComponents<SphereCollider>();
+        for(int i = 0; i < cols.Length; i++)
+        {
+            if(cols[i].isTrigger)
+            {
+                _deathCollider = cols[i];
+                break;
+            }
+        }
+        _deathCollider.enabled = false;
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
 
+        if(_shouldDie)
+        {
+            Explode();
+        }
+
+        switch(GetAIState())
+        {
+            case AIState.Attacking:
+                Explode();
+                break;
+        }
+    }
+
+    private void Explode()
+    {
+        //Play explode animation and destroy afterwards
+        transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 10;
+        if(transform.localScale.x >= 3)
+        {
+            _deathCollider.enabled = true;
+            if(_shouldDieInFrames == 0)
+                Destroy(this.gameObject);
+            _shouldDieInFrames--;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Enemy")
+        {
+            if(_deathCollider.enabled)
+                other.gameObject.GetComponent<AIBehavior>().TakeDamage(_enemyStats.Damage, 100);
+        }
     }
 }

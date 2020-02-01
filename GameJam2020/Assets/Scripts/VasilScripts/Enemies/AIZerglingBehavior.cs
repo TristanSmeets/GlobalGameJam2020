@@ -13,16 +13,14 @@ public class AIZerglingBehavior : AIBehavior
     {
         base.Update();
 
+        if(_shouldDie)
+            Destroy(this.gameObject);
+
         switch(GetAIState())
         {
-            case AIState.Chasing:
-                if(_aiMoveToTarget.GetDistanceToTarget() <= _enemyStats.AttackRange)
-                {
-                    if(_aiMoveToTarget.GetVelocity().magnitude <= 1)
-                    {
-                        Attack();
-                    }
-                }
+            case AIState.Attacking:
+                //Play attack animation and Wait() after it's finished
+                Wait(_enemyStats.WaitTimeAfterAttack);
                 break;
         }
     }

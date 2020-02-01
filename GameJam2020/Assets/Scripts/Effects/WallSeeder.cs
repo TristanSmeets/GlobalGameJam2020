@@ -17,7 +17,7 @@ public class WallSeeder : MonoBehaviour
             {
                 MeshRenderer renderer = gObjects[i].GetComponent<MeshRenderer>();
                 if (renderer)
-                renderer.material.SetFloat("_Seed", i + 1);
+                renderer.material.SetFloat("_Seed", (i * 0.1f) + 1);
             }
         }
     }

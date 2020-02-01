@@ -10,13 +10,13 @@ namespace Weapon
     public struct WeaponSpecifics
     {
         public float Damage;
-        public float FireSpeedInSeconds;
+        public float FireRate;
         public float FireRange;
 
-        public WeaponSpecifics(float damage, float fireSpeed, float fireRange)
+        public WeaponSpecifics(float damage, float fireRate, float fireRange)
         {
             Damage = damage;
-            FireSpeedInSeconds = fireSpeed;
+            FireRate = fireRate;
             FireRange = fireRange;
         }
     }

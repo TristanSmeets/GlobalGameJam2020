@@ -375,8 +375,8 @@ MonoBehaviour:
   projectileSpawn: {fileID: 1393550126}
   weaponSpecifics:
     Damage: 10
-    FireSpeedInSeconds: 10
-    FireRange: 50
+    FireRate: 0
+    FireRange: 25
 --- !u!1 &925686102
 GameObject:
   m_ObjectHideFlags: 0

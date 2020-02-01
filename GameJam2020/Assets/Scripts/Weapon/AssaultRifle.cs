@@ -17,7 +17,7 @@ namespace Weapon
             {
                 Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>().
                     SetDestroyRange(weaponSpecifics.FireRange);
-                cooldownTimer = weaponSpecifics.FireSpeedInSeconds;
+                cooldownTimer = weaponSpecifics.FireRate;
             }
         }
 

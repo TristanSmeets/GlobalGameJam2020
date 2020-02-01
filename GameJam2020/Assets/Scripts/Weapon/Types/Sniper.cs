@@ -20,6 +20,8 @@ namespace Weapon
             cooldownTimer -= Time.deltaTime;
             if (cooldownTimer < 0)
             {
+                Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 1.5f);
+                WeaponKnockback(weaponKnockbackAmount);
                 Projectile newProjectile = Instantiate(projectilePrefab, 
                     projectileSpawn.position, 
                     projectileSpawn.rotation).GetComponent<Projectile>();
@@ -31,6 +33,11 @@ namespace Weapon
         public override WeaponType GetWeaponType()
         {
             return WeaponType.SNIPER;
+        }
+
+        private void LateUpdate()
+        {
+            WeaponRotation();
         }
     }
 }

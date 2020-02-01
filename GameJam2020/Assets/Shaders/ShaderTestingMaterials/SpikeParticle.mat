@@ -34,4 +34,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.70710677, g: 0.027729679, b: 0, a: 1}
     - _MidColor: {r: 1, g: 0.601208, b: 0, a: 1}
-    - _TipColor: {r: 3.6886053, g: 3.3409882, b: 0, a: 1}
+    - _TipColor: {r: 0, g: 0, b: 0, a: 1}

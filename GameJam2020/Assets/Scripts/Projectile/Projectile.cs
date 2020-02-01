@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     {
         cachedTransform = transform;
         rb = GetComponent<Rigidbody>();
-        rb.velocity = cachedTransform.forward * movementSpeed;
     }
 
     public void SetDestroyRange(float fireRange)
@@ -24,6 +23,11 @@ public class Projectile : MonoBehaviour
     public void SetWeaponSpecifics(Weapon.WeaponSpecifics specifics)
     {
         weaponSpecifics = specifics;
+    }
+
+    public void SetVelocity(Vector3 direction)
+    {
+        rb.velocity = direction * movementSpeed;
     }
 
     private void OnTriggerEnter(Collider other)

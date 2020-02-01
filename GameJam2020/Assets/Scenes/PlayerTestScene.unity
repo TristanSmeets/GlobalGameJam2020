@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 521451611}
   - component: {fileID: 521451614}
   m_Layer: 0
-  m_Name: PlaceHolderWeapon
+  m_Name: PlaceHolderAssault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,8 +315,9 @@ MonoBehaviour:
   weaponSpecifics:
     Damage: 100
     StunDamage: 100
-    FireRate: 0.16
+    FireRate: 0.01
     FireRange: 25
+  offsetRange: 10
 --- !u!1 &925686102
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1630073170
 MonoBehaviour:
   m_ObjectHideFlags: 0

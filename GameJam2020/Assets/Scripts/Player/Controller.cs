@@ -77,7 +77,13 @@ namespace Player
             else
                 _animator.SetTrigger("ForwardTrigger");
 
-            _animator.speed = Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * 2;
+            if((pMoveDirection.x > 0 && pLookDirection.x < 0) ||
+                (pMoveDirection.x < 0 && pLookDirection.x > 0) ||
+                (pMoveDirection.z > 0 && pLookDirection.z < 0) ||
+                (pMoveDirection.z < 0 && pLookDirection.z > 0))
+                _animator.SetFloat("PlaybackSpeed", Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * -2);
+            else
+                _animator.SetFloat("PlaybackSpeed", Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * 2);
         }
     }
 }

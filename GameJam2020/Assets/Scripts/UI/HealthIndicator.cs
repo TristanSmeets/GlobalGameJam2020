@@ -36,7 +36,6 @@ public class HealthIndicator : MonoBehaviour
 
     private void OnDamagedPlayer(float currentHealth)
     {
-        Debug.LogFormat($"Current health: {currentHealth}");
         progressor.SetValue(currentHealth);
     }
 }

@@ -15,10 +15,15 @@ namespace Weapon
         [SerializeField] protected WeaponSpecifics weaponSpecifics;
         protected Transform cachedTransform = null;
         protected float cooldownTimer = 0.0f;
+        protected ProjectileStats projectileStats;
 
         protected virtual void OnEnable()
         {
             cachedTransform = gameObject.transform;
+            projectileStats = new ProjectileStats(weaponSpecifics.ProjectileSpeed,
+                    weaponSpecifics.Damage,
+                    weaponSpecifics.Stun,
+                    weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed);
         }
 
         public abstract void FireWeapon();

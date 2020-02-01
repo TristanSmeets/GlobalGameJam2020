@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class GameStats : MonoBehaviour
 {
+    public delegate void StartWave();
+    public static event StartWave OnWaveStart;
     public delegate void EndWave();
     public static event EndWave OnWaveEnd;
 
+    public delegate void StartRound();
+    public static event StartRound OnRoundStart;
+    public delegate void EndRound();
+    public static event EndRound OnRoundEnd;
+
+    [SerializeField]
+    private int _wavesPerRound;
     [SerializeField]
     private int _maxEnemiesAtOnce;
     [SerializeField]
@@ -16,23 +25,37 @@ public class GameStats : MonoBehaviour
     [SerializeField]
     private float _timeBetweenWaves;
 
-    private static int _currentWave = 1;
+    private static int _currentWave;
+    private static int _currentRound;
     private List<GameObject> _enemiesInLevel = new List<GameObject>();
     private int _remainingEnemiesInWave;
     private float _nextWaveTimer;
 
-    private bool _waveHasEnded = false;
-    private bool _waveInProgress = false;
+    private bool _waveHasEnded;
+    private bool _waveInProgress;
+    private bool _roundHasEnded;
+    private bool _roundInProgress;
 
     private void Start()
     {
-        _remainingEnemiesInWave = _amountOfEnemiesInFirstWave;
-        _nextWaveTimer = _timeBetweenWaves;
         OnWaveEnd += OnWaveEnded;
+        _roundHasEnded = true;
+        _waveHasEnded = true;
     }
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Joystick1Button7) && !_roundInProgress && _roundHasEnded)
+        {
+            NextRound();
+
+            if(OnRoundStart != null)
+                OnRoundStart();
+        }
+
+        if(!_roundInProgress)
+            return;
+
         if(AreAllEnemiesDead() && !_waveHasEnded)
         {
             if(OnWaveEnd != null)
@@ -42,8 +65,28 @@ public class GameStats : MonoBehaviour
         {
             _nextWaveTimer -= Time.deltaTime;
             if(_nextWaveTimer <= 0)
+            {
                 NextWave();
+            }
         }
+    }
+
+    public void NextRound()
+    {
+        InitiateRound(_currentRound + 1);
+    }
+
+    public void InitiateRound(int pRoundIndex)
+    {
+        _currentRound = pRoundIndex;
+        _nextWaveTimer = _timeBetweenWaves;
+        _currentWave = 0;
+        _roundInProgress = true;
+        _roundHasEnded = false;
+        _waveInProgress = false;
+        _waveHasEnded = true;
+
+        NextWave();
     }
 
     public void NextWave()
@@ -78,6 +121,9 @@ public class GameStats : MonoBehaviour
         _remainingEnemiesInWave = Mathf.FloorToInt(_amountOfEnemiesInFirstWave * (1 + (_xPercentAmountOfEnemiesInWaveIncreasePerYWave.x * 0.01f * Mathf.FloorToInt(_currentWave / _xPercentAmountOfEnemiesInWaveIncreasePerYWave.y))));
         _waveHasEnded = false;
         _waveInProgress = true;
+
+        if(OnWaveStart != null)
+            OnWaveStart();
     }
 
     private void OnWaveEnded()
@@ -85,6 +131,15 @@ public class GameStats : MonoBehaviour
         _nextWaveTimer = _timeBetweenWaves;
         _waveHasEnded = true;
         _waveInProgress = false;
+
+        if(_currentWave == _wavesPerRound)
+        {
+            _roundHasEnded = true;
+            _roundInProgress = false;
+
+            if(OnRoundEnd != null)
+                OnRoundEnd();
+        }
     }
 
     private void KillAllEnemies()
@@ -98,6 +153,7 @@ public class GameStats : MonoBehaviour
 
     public int MaxEnemiesAtOnce { get => _maxEnemiesAtOnce; }
     public static int CurrentWave { get => _currentWave; }
+    public static int CurrentRound { get => _currentRound; }
     public List<GameObject> EnemiesInLevel { get => _enemiesInLevel; }
     public int RemainingEnemiesInWave { get => _remainingEnemiesInWave; set => _remainingEnemiesInWave = value; }
 }

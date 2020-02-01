@@ -2217,6 +2217,11 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8515457027346239292, guid: c1a18b15870a7ec4aad6ac2a2d5b64a0,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1a18b15870a7ec4aad6ac2a2d5b64a0, type: 3}
 --- !u!4 &92234151 stripped
@@ -4910,6 +4915,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865321394930487782, guid: 82695e271e45c9a4cb12020b3fe9f23d,
+        type: 3}
+      propertyPath: _wavesPerRound
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865321394930487782, guid: 82695e271e45c9a4cb12020b3fe9f23d,
+        type: 3}
+      propertyPath: _amountOfEnemiesInFirstWave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865321394930487782, guid: 82695e271e45c9a4cb12020b3fe9f23d,
+        type: 3}
+      propertyPath: _xPercentAmountOfEnemiesInWaveIncreasePerYWave.x
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7865321394930487783, guid: 82695e271e45c9a4cb12020b3fe9f23d,
         type: 3}

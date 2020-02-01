@@ -47,6 +47,9 @@ public class EnemyStats : MonoBehaviour
 
     public void InitializeStats()
     {
+        _baseHealth *= Mathf.FloorToInt(0.1f * GameStats.CurrentRound);
+        _baseDamage *= Mathf.FloorToInt(0.1f * GameStats.CurrentRound);
+
         _currentWave = GameStats.CurrentWave;
         _currentHealth = Mathf.FloorToInt(_baseHealth * (1 + (_xPercentHealthIncreaseiPerYWaves.x * 0.01f * Mathf.FloorToInt(_currentWave / _xPercentHealthIncreaseiPerYWaves.y))));
         _currentStunHealth = Mathf.FloorToInt(_baseStunHealth * (1 + _xPercentStunHealthIncreasePerYWaves.x * 0.01f * Mathf.FloorToInt(_currentWave / _xPercentStunHealthIncreasePerYWaves.y)));

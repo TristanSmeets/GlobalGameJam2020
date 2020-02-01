@@ -7,14 +7,12 @@ public class Player : MonoBehaviour
 {
     Controller controller = null;
     WeaponManager weaponManager = null;
-    AbstractWeapon abstractWeapon = null;
 
     private void OnEnable()
     {
         controller = GetComponent<Controller>();
         weaponManager = GetComponent<WeaponManager>();
-        abstractWeapon = weaponManager.GetWeapon(WeaponType.ASSAULT_RIFLE);
-
+        weaponManager.SwitchWeapon(WeaponType.ASSAULT_RIFLE);
         AddListeners();
     }
 
@@ -37,11 +35,11 @@ public class Player : MonoBehaviour
 
     private void OnFiringWeapon()
     {
-        abstractWeapon?.FireWeapon();
+        weaponManager?.GetCurrentWeapon().FireWeapon();
     }
 
     private void OnSwitchingWeapon(WeaponType weaponType)
     {
-        abstractWeapon = weaponManager.GetWeapon(weaponType);
+        weaponManager.SwitchWeapon(weaponType);
     }
 }

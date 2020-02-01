@@ -6,18 +6,40 @@ namespace Weapon
 {
     public class WeaponManager : MonoBehaviour
     {
-        [SerializeField] private AbstractWeapon[] weapons = new AbstractWeapon[3];
+        [SerializeField] private GameObject[] weapons = new GameObject[0];
+        [SerializeField] private Transform WeaponSpawn;
+        private GameObject currentWeapon = null;
 
-        public AbstractWeapon GetWeapon(WeaponType weaponType)
+        public void SwitchWeapon(WeaponType weaponType)
+        {
+            if(currentWeapon != null)
+            {
+                Destroy(currentWeapon);
+            }
+
+            if(GetWeapon(weaponType) == null)
+            {
+                return;
+            }
+
+            currentWeapon = Instantiate(GetWeapon(weaponType), WeaponSpawn.position, WeaponSpawn.rotation, WeaponSpawn);
+        }
+
+        public GameObject GetWeapon(WeaponType weaponType)
         {
             for(int i = 0; i < weapons.Length; ++i)
             {
-                if(weapons[i].GetWeaponType() == weaponType)
+                if(weapons[i].GetComponent<AbstractWeapon>()?.GetWeaponType() == weaponType)
                 {
                     return weapons[i];
                 }
             }
             return null;
+        }
+
+        public AbstractWeapon GetCurrentWeapon()
+        {
+            return currentWeapon?.GetComponent<AbstractWeapon>();
         }
     }
 }

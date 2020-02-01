@@ -4,7 +4,6 @@ namespace Weapon
 {
     public class AssaultRifle : AbstractWeapon
     {
-
         [SerializeField] private Vector2 offsetRange;
 
         public override void FireWeapon()

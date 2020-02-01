@@ -6,25 +6,20 @@ using UnityEngine;
 public class ScreenGlitching : MonoBehaviour
 {
     [SerializeField]
-    private Material glitchMaterial;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private Material glitchMaterial = null;
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         if (glitchMaterial)
-            Graphics.Blit(source, glitchMaterial);
+        {
+            Graphics.Blit(source, destination, glitchMaterial);
+        }
         else
             Graphics.Blit(source, destination);
+    }
+
+    public Material GetMaterial()
+    {
+        return glitchMaterial;
     }
 }

@@ -15,10 +15,13 @@ namespace Player
         public event Action FiringWeapon = delegate { };
         public event Action<Weapon.WeaponType> SwitchingWeapon = delegate { };
 
+        private Animator _animator;
+
         private void OnEnable()
         {
             cachedTransform = gameObject.transform;
             controller = GetComponent<CharacterController>();
+            _animator = GetComponent<Animator>();
         }
 
         public void FixedUpdate()
@@ -26,7 +29,9 @@ namespace Player
             Vector3 moveDirection = new Vector3(Input.GetAxis("LeftStickHorizontal"), 0, Input.GetAxis("LeftStickVertical"));
             Vector3 lookDirection = new Vector3(Input.GetAxis("RightStickHorizontal"), 0, Input.GetAxis("RightStickVertical"));
 
-            if (lookDirection.sqrMagnitude > stickTriggerSensitivity)
+            UpdateAnimations(moveDirection, lookDirection);
+
+            if(lookDirection.sqrMagnitude > stickTriggerSensitivity)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
                 cachedTransform.rotation = lookRotation;
@@ -43,17 +48,17 @@ namespace Player
         private void CheckWeaponButtons()
         {
             //TODO: Make sure these only fire onces.
-            if (Input.GetAxis("Fire1") > 0)
+            if(Input.GetAxis("Fire1") > 0)
             {
                 SwitchingWeapon(Weapon.WeaponType.SHOTGUN);
             }
 
-            if (Input.GetAxis("Fire2") > 0)
+            if(Input.GetAxis("Fire2") > 0)
             {
                 SwitchingWeapon(Weapon.WeaponType.ASSAULT_RIFLE);
             }
 
-            if (Input.GetAxis("Fire3") > 0)
+            if(Input.GetAxis("Fire3") > 0)
             {
                 SwitchingWeapon(Weapon.WeaponType.SNIPER);
             }
@@ -62,6 +67,17 @@ namespace Player
         public void SetMovementSpeed(float value)
         {
             movementSpeed = value;
+        }
+
+        private void UpdateAnimations(Vector3 pMoveDirection, Vector3 pLookDirection)
+        {
+            if((Mathf.Abs(pMoveDirection.x) > 0 && Mathf.Abs(pLookDirection.z) >= 0.5f) ||
+                (Mathf.Abs(pMoveDirection.z) > 0 && Mathf.Abs(pLookDirection.x) >= 0.5f))
+                _animator.SetTrigger("SidewaysTrigger");
+            else
+                _animator.SetTrigger("ForwardTrigger");
+
+            _animator.speed = Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * 2;
         }
     }
 }

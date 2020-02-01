@@ -8,7 +8,7 @@ namespace Player
 {
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] private PlayerStats stats = new PlayerStats(10,100);
+        [SerializeField] private PlayerStats stats = new PlayerStats(10, 100);
         private Controller controller = null;
         private WeaponManager weaponManager = null;
         private HealthComponent healthComponent = null;

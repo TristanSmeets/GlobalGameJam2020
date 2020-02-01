@@ -300,6 +300,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 5326842454518574189, guid: 7a557f0ad8b9dc041ac2c235c2b111db, type: 3}
   - {fileID: 8401620426824003103, guid: e5ee612b85e6e1d4693b7c964f745987, type: 3}
+  - {fileID: 1001086175993951899, guid: 5e86e62b263c8a841ba308ca23b16d21, type: 3}
   WeaponSpawn: {fileID: 1275869}
 --- !u!114 &925686106
 MonoBehaviour:

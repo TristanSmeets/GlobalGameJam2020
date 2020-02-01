@@ -10,7 +10,7 @@ namespace Weapon
     public enum WeaponType { SHOTGUN, ASSAULT_RIFLE, SNIPER };
     public abstract class AbstractWeapon : MonoBehaviour
     {
-        [SerializeField] protected GameObject projectile = null;
+        [SerializeField] protected GameObject projectilePrefab = null;
         [SerializeField] protected Transform projectileSpawn = null;
         [SerializeField] protected WeaponSpecifics weaponSpecifics;
         protected Transform cachedTransform = null;

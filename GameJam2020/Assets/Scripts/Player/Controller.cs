@@ -5,9 +5,10 @@ using System;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 10.0f;
-    CharacterController controller;
-    Transform cachedTransform;
+    [SerializeField] private float movementSpeed = 10.0f;
+    [SerializeField] private float stickTriggerSensitivity = 0.8f;
+    private CharacterController controller;
+    private Transform cachedTransform;
 
     public event Action FiringWeapon = delegate { };
     public event Action<Weapon.WeaponType> SwitchingWeapon = delegate { };
@@ -23,7 +24,7 @@ public class Controller : MonoBehaviour
         Vector3 moveDirection = new Vector3(Input.GetAxis("LeftStickHorizontal"), 0, Input.GetAxis("LeftStickVertical"));
         Vector3 lookDirection = new Vector3(Input.GetAxis("RightStickHorizontal"), 0, Input.GetAxis("RightStickVertical"));
 
-        if (lookDirection.sqrMagnitude > .8f)
+        if (lookDirection.sqrMagnitude > stickTriggerSensitivity)
         {
             Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
             cachedTransform.rotation = lookRotation;

@@ -2,10 +2,10 @@
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 10.0f;
-    Transform cachedTransform;
-    Rigidbody rb;
-    Weapon.WeaponSpecifics weaponSpecifics;
+    [SerializeField] private ProjectileStats stats;
+    private Transform cachedTransform;
+    private Rigidbody rb;
+    private Weapon.WeaponSpecifics weaponSpecifics;
 
     private void OnEnable()
     {
@@ -13,25 +13,25 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void SetDestroyRange(float fireRange)
+    public void SetProjectileStats(ProjectileStats stats)
     {
-        float destroyTime = fireRange / movementSpeed;
-
-        Destroy(gameObject, destroyTime);
+        this.stats = stats;
+        SetVelocity(stats.MovementSpeed);
+        SetDestroyTime(stats.LifeTime);
     }
 
-    public void SetWeaponSpecifics(Weapon.WeaponSpecifics specifics)
+    private void SetVelocity(float speed)
     {
-        weaponSpecifics = specifics;
+        rb.velocity = cachedTransform.forward * speed;
     }
 
-    public void SetVelocity(Vector3 direction)
+    private void SetDestroyTime(float timeInSeconds)
     {
-        rb.velocity = direction * movementSpeed;
+        Destroy(gameObject, timeInSeconds);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<AIBehavior>()?.TakeDamage(weaponSpecifics.Damage, weaponSpecifics.StunDamage);
+        other.gameObject.GetComponent<AIBehavior>()?.TakeDamage(stats.Damage, stats.Stun);
     }
 }

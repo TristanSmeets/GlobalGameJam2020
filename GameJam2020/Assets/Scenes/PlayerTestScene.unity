@@ -313,11 +313,12 @@ MonoBehaviour:
     type: 3}
   projectileSpawn: {fileID: 1393550126}
   weaponSpecifics:
-    Damage: 100
-    StunDamage: 100
-    FireRate: 0.01
+    Damage: 10
+    Stun: 0
+    FireRate: 0.16
     FireRange: 25
-  offsetRange: 10
+    ProjectileSpeed: 100
+  offsetRange: {x: 10, y: 5}
 --- !u!1 &925686102
 GameObject:
   m_ObjectHideFlags: 0

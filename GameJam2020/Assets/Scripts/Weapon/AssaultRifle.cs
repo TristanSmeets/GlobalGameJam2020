@@ -5,7 +5,7 @@ namespace Weapon
     public class AssaultRifle : AbstractWeapon
     {
 
-        [SerializeField] private float offsetRange;
+        [SerializeField] private Vector2 offsetRange;
 
         public override void FireWeapon()
         {
@@ -14,10 +14,12 @@ namespace Weapon
             if (cooldownTimer <= 0)
             {
                 Projectile newProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();
-                newProjectile.SetDestroyRange(weaponSpecifics.FireRange);
-                newProjectile.SetWeaponSpecifics(weaponSpecifics);
-                newProjectile.transform.Rotate(Vector3.up, Random.Range(-offsetRange, offsetRange));
-                newProjectile.SetVelocity(newProjectile.transform.forward);
+                newProjectile.transform.Rotate(Vector3.up, Random.Range(-offsetRange.x, offsetRange.x));
+                newProjectile.transform.Rotate(Vector3.right, Random.Range(-offsetRange.y, offsetRange.y));
+                newProjectile.SetProjectileStats(new ProjectileStats(weaponSpecifics.ProjectileSpeed,
+                    weaponSpecifics.Damage,
+                    weaponSpecifics.Stun,
+                    weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed));
                 cooldownTimer = weaponSpecifics.FireRate;
             }
         }

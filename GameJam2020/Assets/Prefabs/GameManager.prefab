@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 20
-  _maxTimeBetweenEnemySpawns: 2
+  _maxTimeBetweenEnemySpawns: 10
 --- !u!114 &7865321394930487782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wavesPerRound: 2
   _maxEnemiesAtOnce: 10
-  _amountOfEnemiesInFirstWave: 1
+  _amountOfEnemiesInFirstWave: 20
   _xPercentAmountOfEnemiesInWaveIncreasePerYWave: {x: 100, y: 1}
   _timeBetweenWaves: 5
 --- !u!114 &1581249930
@@ -95,10 +95,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1cffc347388788e48b42eceacd03f986, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1001086175993951892}
   - component: {fileID: 1001086175993951893}
   - component: {fileID: 1001086175993951898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlaceholderSniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001086176057128780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

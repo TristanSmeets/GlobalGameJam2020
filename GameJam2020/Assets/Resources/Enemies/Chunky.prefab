@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2460648833900404206}
   - component: {fileID: 2460648833900404205}
   - component: {fileID: 2460648833900404204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 2460648834733966496}
   - component: {fileID: 8501371933296893892}
   - component: {fileID: 720771054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chunky
   m_TagString: Enemy
   m_Icon: {fileID: 0}

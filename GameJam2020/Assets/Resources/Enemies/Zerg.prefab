@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3217596437713195363}
   - component: {fileID: 304187719}
   - component: {fileID: 1855992020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zerg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 3217596438018377754}
   - component: {fileID: 3217596438018377753}
   - component: {fileID: 3217596438018377752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

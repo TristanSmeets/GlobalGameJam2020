@@ -14,7 +14,7 @@ namespace Weapon
         [SerializeField] protected Transform projectileSpawn = null;
         [SerializeField] protected WeaponSpecifics weaponSpecifics;
         protected Transform cachedTransform = null;
-        protected float cooldownTimer = 0.0f;
+        protected static float cooldownTimer = 0.0f;
         protected ProjectileStats projectileStats;
 
         protected virtual void OnEnable()
@@ -24,6 +24,7 @@ namespace Weapon
                     weaponSpecifics.Damage,
                     weaponSpecifics.Stun,
                     weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed);
+            cooldownTimer = weaponSpecifics.FireRate;
         }
 
         public abstract void FireWeapon();

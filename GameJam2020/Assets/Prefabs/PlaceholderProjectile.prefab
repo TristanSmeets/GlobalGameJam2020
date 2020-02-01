@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1922231658138291440}
   - component: {fileID: 403090637816555765}
   - component: {fileID: 7625781912758152362}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlaceholderProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef52d1e7a4a57d408da1dd220f487c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  stats:
+    LifeTime: 0
 --- !u!135 &7625781912758152362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -122,5 +123,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.8836365
+  m_Radius: 0.56
   m_Center: {x: 0, y: 0, z: 0}

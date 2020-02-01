@@ -32,12 +32,18 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogFormat($"Other: {other.name}");
-        other.gameObject.GetComponent<AIBehavior>()?.TakeDamage(stats.Damage, stats.Stun);
-        //if(stats.IsPiercing)
-        //{
-        //    return; 
-        //}
-        //Destroy(gameObject);
+        AIBehavior aiBehavior = other.GetComponent<AIBehavior>();
+
+        if(aiBehavior)
+        {
+            aiBehavior.TakeDamage(stats.Damage, stats.Stun);
+
+            if (!stats.IsPiercing)
+            {
+                Destroy(cachedTransform.gameObject);
+            }
+            return;
+        }
+        Destroy(cachedTransform.gameObject);
     }
 }

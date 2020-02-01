@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8401620426488177030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8401620426824003072}
   - component: {fileID: 8401620426824003073}
   - component: {fileID: 8401620426824003102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlaceholderShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

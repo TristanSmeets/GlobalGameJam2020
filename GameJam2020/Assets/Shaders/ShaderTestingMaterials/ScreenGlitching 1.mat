@@ -29,7 +29,7 @@ Material:
     - _NewSeedSpeed: 0
     - _NoiseTiling: 0.025
     - _StripesAmount: 0
-    - _StripesDistance: 0.018
+    - _StripesDistance: 0.03
     - _StripesSize: 0.86
     - _StripesSize2: 0
     - _StripesSpeed: 0.041

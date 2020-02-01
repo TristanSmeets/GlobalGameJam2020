@@ -3,43 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weapon;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    Controller controller = null;
-    WeaponManager weaponManager = null;
-
-    private void OnEnable()
+    public class Player : MonoBehaviour, IDamageable
     {
-        controller = GetComponent<Controller>();
-        weaponManager = GetComponent<WeaponManager>();
-        weaponManager.SwitchWeapon(WeaponType.ASSAULT_RIFLE);
-        AddListeners();
-    }
+        [SerializeField] private PlayerStats stats = new PlayerStats(10,100);
+        private Controller controller = null;
+        private WeaponManager weaponManager = null;
+        private HealthComponent healthComponent = null;
 
-    private void OnDisable()
-    {
-        RemoveListeners();
-    }
+        private void OnEnable()
+        {
+            controller = GetComponent<Controller>();
+            controller.SetMovementSpeed(stats.MovementSpeed);
+            weaponManager = GetComponent<WeaponManager>();
+            weaponManager.SwitchWeapon(WeaponType.ASSAULT_RIFLE);
+            healthComponent = GetComponent<HealthComponent>();
+            healthComponent.SetMaxHealth(stats.MaxHealth);
+            AddListeners();
+        }
 
-    private void AddListeners()
-    {
-        controller.FiringWeapon += OnFiringWeapon;
-        controller.SwitchingWeapon += OnSwitchingWeapon;
-    }
+        private void OnDisable()
+        {
+            RemoveListeners();
+        }
 
-    private void RemoveListeners()
-    {
-        controller.FiringWeapon -= OnFiringWeapon;
-        controller.SwitchingWeapon -= OnSwitchingWeapon;
-    }
+        private void AddListeners()
+        {
+            controller.FiringWeapon += OnFiringWeapon;
+            controller.SwitchingWeapon += OnSwitchingWeapon;
+        }
 
-    private void OnFiringWeapon()
-    {
-        weaponManager?.GetCurrentWeapon().FireWeapon();
-    }
+        private void RemoveListeners()
+        {
+            controller.FiringWeapon -= OnFiringWeapon;
+            controller.SwitchingWeapon -= OnSwitchingWeapon;
+        }
 
-    private void OnSwitchingWeapon(WeaponType weaponType)
-    {
-        weaponManager.SwitchWeapon(weaponType);
+        private void OnFiringWeapon()
+        {
+            weaponManager?.GetCurrentWeapon().FireWeapon();
+        }
+
+        private void OnSwitchingWeapon(WeaponType weaponType)
+        {
+            weaponManager.SwitchWeapon(weaponType);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            healthComponent.ChangeHealth(-damage);
+        }
     }
 }

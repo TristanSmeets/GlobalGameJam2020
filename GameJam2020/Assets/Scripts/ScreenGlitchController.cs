@@ -17,6 +17,8 @@ public class ScreenGlitchController : MonoBehaviour
     private List<float> defaultStripeAmounts = new List<float>();
     [SerializeField]
     private List<float> defaultSeedSpeeds = new List<float>();
+    [SerializeField]
+    private List<float> defaultDistances = new List<float>();
 
     private void OnEnable()
     {
@@ -33,6 +35,11 @@ public class ScreenGlitchController : MonoBehaviour
             {
                 defaultSeedSpeeds.Add(0);
             }
+
+            while (defaultDistances.Count < screenGlitchers.Length)
+            {
+                defaultDistances.Add(0);
+            }
         }
     }
 
@@ -43,6 +50,7 @@ public class ScreenGlitchController : MonoBehaviour
         {
             UpdateStripeAmount(i, glitch);
             UpdateSeedSpeed(i, glitch);
+            UpdateDistances(i, glitch);
         }
     } 
 
@@ -64,5 +72,15 @@ public class ScreenGlitchController : MonoBehaviour
         else
             val = Mathf.Lerp(defaultSeedSpeeds[_scriptIndex], 1, (glitchValue - 0.5f) * 2);
         screenGlitchers[_scriptIndex].GetMaterial().SetFloat("_NewSeedSpeed", val);
+    }
+
+    private void UpdateDistances(int _scriptIndex, float glitchValue)
+    {
+        float val = 0;
+        if (glitchValue < 0.5)
+            val = Mathf.Lerp(0, defaultDistances[_scriptIndex], glitchValue * 2);
+        else
+            val = defaultDistances[_scriptIndex];
+        screenGlitchers[_scriptIndex].GetMaterial().SetFloat("_StripesDistance", val);
     }
 }

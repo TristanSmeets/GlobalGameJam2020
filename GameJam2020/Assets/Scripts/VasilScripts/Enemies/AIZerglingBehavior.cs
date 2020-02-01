@@ -7,17 +7,15 @@ public class AIZerglingBehavior : AIBehavior
     [SerializeField]
     private float _preparationForAttackDuration;
     [SerializeField]
-    private float _jumpCooldown;
-    [SerializeField]
     private int _normalAttackRange;
+    [SerializeField]
+    private float _jumpCooldown;
     [SerializeField]
     private int _jumpAttackRange;
 
-
+    private float _animationTime = 1;
     private float _preparationForAttackTimer;
     private float _jumpTimer;
-
-    private float _animationTime = 1;
     private bool _gotJumpPos;
     private Vector3 _jumpToPos;
 
@@ -56,7 +54,6 @@ public class AIZerglingBehavior : AIBehavior
                                                                                    GetComponent<Collider>().bounds.extents.x -
                                                                                    _aiMoveToTarget.TargetTransform.GetComponent<Collider>().bounds.extents.x * 2);
                             _gotJumpPos = true;
-                            _jumpTimer = _jumpCooldown;
                             _enemyStats.AttackRange = _normalAttackRange;
                         }
                     }
@@ -64,6 +61,7 @@ public class AIZerglingBehavior : AIBehavior
                     if(_gotJumpPos)
                     {
                         transform.position = Vector3.Slerp(transform.position, _jumpToPos, Time.deltaTime * 10);
+                        _jumpTimer = _jumpCooldown;
                     }
                 }
 

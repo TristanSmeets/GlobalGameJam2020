@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1214136206363249340}
   - component: {fileID: 4542017791810783948}
   - component: {fileID: 3401120245928257192}
-  - component: {fileID: 9001872387699610309}
   - component: {fileID: 1922231658138291440}
   - component: {fileID: 403090637816555765}
+  - component: {fileID: 7625781912758152362}
   m_Layer: 0
   m_Name: PlaceholderProjectile
   m_TagString: Untagged
@@ -82,20 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &9001872387699610309
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944906376788314545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1922231658138291440
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,3 +111,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 50
+--- !u!135 &7625781912758152362
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5944906376788314545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.8836365
+  m_Center: {x: 0, y: 0, z: 0}

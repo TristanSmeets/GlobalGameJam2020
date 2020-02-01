@@ -9,14 +9,16 @@ namespace Weapon
 {
     public class AssaultRifle : AbstractWeapon
     {
-        public override void Fire()
+        public override void FireWeapon()
         {
             cooldownTimer -= Time.deltaTime;
 
             if(cooldownTimer <= 0)
             {
-                Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>().
-                    SetDestroyRange(weaponSpecifics.FireRange);
+                Projectile newProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();
+                newProjectile.SetDestroyRange(weaponSpecifics.FireRange);
+                newProjectile.SetWeaponSpecifics(weaponSpecifics);
+
                 cooldownTimer = weaponSpecifics.FireRate;
             }
         }

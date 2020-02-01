@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void OnFiringWeapon()
     {
-        abstractWeapon.Fire();
+        abstractWeapon?.FireWeapon();
     }
 
     private void OnSwitchingWeapon(WeaponType weaponType)

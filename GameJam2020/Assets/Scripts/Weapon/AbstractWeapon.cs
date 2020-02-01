@@ -21,7 +21,7 @@ namespace Weapon
             cachedTransform = gameObject.transform;
         }
 
-        public abstract void Fire();
+        public abstract void FireWeapon();
         public abstract WeaponType GetWeaponType();
     }
 }

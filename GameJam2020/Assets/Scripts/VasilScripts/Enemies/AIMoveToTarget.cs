@@ -10,7 +10,6 @@ public class AIMoveToTarget : MonoBehaviour
     private AIBehavior _aiBehavior;
     private EnemyStats _enemyStats;
 
-
     void Start()
     {
         _targetTransform = GameObject.Find("Player").GetComponent<Transform>();

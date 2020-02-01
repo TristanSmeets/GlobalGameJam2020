@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 3217596437713195366}
   - component: {fileID: 3217596437713195365}
   - component: {fileID: 3217596437713195364}
+  - component: {fileID: 1855992020}
   - component: {fileID: 3217596437713195360}
   - component: {fileID: 3217596437713195361}
   - component: {fileID: 3217596437713195362}
   - component: {fileID: 3217596437713195363}
   - component: {fileID: 304187719}
-  - component: {fileID: 1855992020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zerg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &1855992020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217596437713195371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!195 &3217596437713195360
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -146,13 +160,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f713fd11b258d4ca9889905b82a2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseHealth: 35
-  _baseStunHealth: 50
+  _baseHealth: 50
+  _baseStunHealth: 25
+  _baseMovementSpeed: 8
+  _xPercentHealthIncreaseiPerYWaves: {x: 0, y: 0}
+  _xPercentStunHealthIncreasePerYWaves: {x: 0, y: 0}
+  _xPercentMovementSpeedIncreasePerYWaves: {x: 50, y: 1}
   _baseDamage: 10
-  _attackRange: 6
+  _attackRange: 1
   _waitTimeAfterAttack: 0.5
-  CurrentHealth: 0
-  CurrentStunHealth: 0
+  _xPercentDamageIncreasePerYWaves: {x: 0, y: 0}
+  _xPercentAttackSpeedIncreasePerYWaves: {x: 50, y: 1}
 --- !u!114 &3217596437713195363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preparationForAttackDuration: 0.5
-  _normalAttackRange: 2
+  _normalAttackRange: 1.5
   _jumpCooldown: 10
-  _jumpAttackRange: 6
+  _jumpAttackRange: 8
 --- !u!54 &304187719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -185,20 +203,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!136 &1855992020
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3217596437713195371}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!1 &3217596438018377758
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +215,7 @@ GameObject:
   - component: {fileID: 3217596438018377754}
   - component: {fileID: 3217596438018377753}
   - component: {fileID: 3217596438018377752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

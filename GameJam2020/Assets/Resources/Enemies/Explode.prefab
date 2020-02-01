@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 7453772680197609487}
   - component: {fileID: 7453772680197609484}
   - component: {fileID: 7453772680197609485}
+  - component: {fileID: 705591446099598803}
   - component: {fileID: 7453772680197609481}
   - component: {fileID: 7453772680197609480}
   - component: {fileID: 7453772680197609483}
   - component: {fileID: 5338961035734352958}
-  - component: {fileID: 705591446099598803}
   - component: {fileID: 3507764705103938393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Explode
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &705591446099598803
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453772680197609474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &7453772680197609481
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -148,11 +161,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseHealth: 10
   _baseStunHealth: 99999
+  _baseMovementSpeed: 10
+  _xPercentHealthIncreaseiPerYWaves: {x: 100, y: 2}
+  _xPercentStunHealthIncreasePerYWaves: {x: 0, y: 0}
+  _xPercentMovementSpeedIncreasePerYWaves: {x: 20, y: 1}
   _baseDamage: 50
-  _attackRange: 2.5
+  _attackRange: 2
   _waitTimeAfterAttack: 9999
-  CurrentHealth: 0
-  CurrentStunHealth: 0
+  _xPercentDamageIncreasePerYWaves: {x: 5, y: 2}
+  _xPercentAttackSpeedIncreasePerYWaves: {x: 10, y: 2}
 --- !u!114 &5338961035734352958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,19 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfbe98c520546f46ab343143723d61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &705591446099598803
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7453772680197609474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0, z: 0}
+  _preparationForAttackDuration: 0.5
 --- !u!54 &3507764705103938393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -206,7 +211,7 @@ GameObject:
   - component: {fileID: 7453772680964096371}
   - component: {fileID: 7453772680964096368}
   - component: {fileID: 7453772680964096369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

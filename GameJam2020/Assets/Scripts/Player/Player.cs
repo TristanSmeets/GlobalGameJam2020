@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Weapon;
@@ -11,6 +12,7 @@ namespace Player
         private Controller controller = null;
         private WeaponManager weaponManager = null;
         private HealthComponent healthComponent = null;
+        public event Action<float> DamagedPlayer = delegate { };
 
         private void OnEnable()
         {
@@ -53,6 +55,12 @@ namespace Player
         public void TakeDamage(float damage)
         {
             healthComponent.ChangeHealth(-damage);
+            DamagedPlayer(healthComponent.GetCurrentHealth());
+        }
+
+        public PlayerStats GetPlayerStats()
+        {
+            return stats;
         }
     }
 }

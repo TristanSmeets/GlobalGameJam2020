@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5326842453512681242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5326842453512681241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: -0.37, z: 0.539}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.241, y: -0.01, z: 0.802}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 5326842454518574190}
   m_RootOrder: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5326842454518574184}
   - component: {fileID: 5326842454518574191}
   - component: {fileID: 5326842454518574186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlaceHolderAssault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,4 +147,4 @@ MonoBehaviour:
     FireRate: 0.16
     FireRange: 25
     ProjectileSpeed: 100
-  offsetRange: {x: 10, y: 5}
+  offsetRange: {x: 10, y: 0}

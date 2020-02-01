@@ -130,6 +130,11 @@ public abstract class AIBehavior : MonoBehaviour
         }
     }
 
+    public void TriggerDeath()
+    {
+        _shouldDie = true;
+    }
+
     protected virtual void OnDestroy()
     {
         _gameStats.EnemiesInLevel.Remove(this.gameObject);

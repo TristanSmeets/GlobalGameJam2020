@@ -538,8 +538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a1dd071c2da08419441b58da5a4183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxEnemiesAtOnce: 5
-  _amountOfEnemiesInFirstWave: 1000
+  _maxEnemiesAtOnce: 10
+  _amountOfEnemiesInFirstWave: 10
+  _xPercentAmountOfEnemiesInWaveIncreasePerYWave: {x: 20, y: 1}
+  _timeBetweenWaves: 5
 --- !u!1 &1804960418
 GameObject:
   m_ObjectHideFlags: 0

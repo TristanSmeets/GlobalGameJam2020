@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AIExplodeBoyBehavior : AIBehavior
 {
+    [SerializeField]
+    private float _preparationForAttackDuration;
+
     private SphereCollider _deathCollider;
     private int _shouldDieInFrames = 2;
 
@@ -23,6 +26,7 @@ public class AIExplodeBoyBehavior : AIBehavior
                 }
             }
         }
+        _preparationForAttackDuration /= 1 + (_enemyStats.XPercentAttackSpeedIncreasePerYWaves.x * 0.01f * Mathf.FloorToInt(GameStats.CurrentWave / _enemyStats.XPercentAttackSpeedIncreasePerYWaves.y));
     }
 
     protected override void Update()
@@ -37,7 +41,11 @@ public class AIExplodeBoyBehavior : AIBehavior
         switch(GetAIState())
         {
             case AIState.Attacking:
-                Explode();
+                _preparationForAttackDuration -= Time.deltaTime;
+                if(_preparationForAttackDuration <= 0)
+                {
+                    Explode();
+                }
                 break;
         }
     }
@@ -49,6 +57,7 @@ public class AIExplodeBoyBehavior : AIBehavior
         {
             GetComponent<Collider>().enabled = false;
         }
+
         transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 10;
         if(transform.localScale.x >= 3)
         {

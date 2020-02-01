@@ -7,19 +7,18 @@ public class AIChunkyMonkeyBehavior : AIBehavior
     [SerializeField]
     private float _preparationForAttackDuration;
     [SerializeField]
-    private int _normalAttackRange;
+    private float _normalAttackRange;
+    [SerializeField]
+    private float _grenadeTossRange;
     [SerializeField]
     private float _grenadeTossCooldown;
-    [SerializeField]
-    private int _grenadeTossRange;
-    [SerializeField]
-    private int _grenadeDamage;
     [SerializeField]
     private int _grenadeFuseTime;
 
     private float _animationTime = 1;
     private float _preparationForAttackTimer;
     private float _grenadeTossTimer;
+    private int _grenadeDamage;
     private bool _gotGrenadeTossPos;
     private Vector3 _grenadeTossPos;
     private GameObject _grenadePrefab;
@@ -29,6 +28,10 @@ public class AIChunkyMonkeyBehavior : AIBehavior
         base.Start();
 
         _grenadePrefab = Resources.Load<GameObject>("Enemies/Projectiles/Grenade");
+        _enemyStats.AttackRange = _grenadeTossRange;
+        _preparationForAttackDuration /= 1 + (_enemyStats.XPercentAttackSpeedIncreasePerYWaves.x * 0.01f * Mathf.FloorToInt(GameStats.CurrentWave / _enemyStats.XPercentAttackSpeedIncreasePerYWaves.y));
+        _preparationForAttackTimer = _preparationForAttackDuration;
+        _grenadeDamage = _enemyStats.Damage * 2;
     }
 
     protected override void Update()

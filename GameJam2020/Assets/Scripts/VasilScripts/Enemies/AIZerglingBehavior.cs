@@ -7,11 +7,11 @@ public class AIZerglingBehavior : AIBehavior
     [SerializeField]
     private float _preparationForAttackDuration;
     [SerializeField]
-    private int _normalAttackRange;
+    private float _normalAttackRange;
     [SerializeField]
     private float _jumpCooldown;
     [SerializeField]
-    private int _jumpAttackRange;
+    private float _jumpAttackRange;
 
     private float _animationTime = 1;
     private float _preparationForAttackTimer;
@@ -22,8 +22,10 @@ public class AIZerglingBehavior : AIBehavior
     protected override void Start()
     {
         base.Start();
-        _preparationForAttackTimer = _preparationForAttackDuration;
+
         _enemyStats.AttackRange = _jumpAttackRange;
+        _preparationForAttackDuration /= 1 + (_enemyStats.XPercentAttackSpeedIncreasePerYWaves.x * 0.01f * Mathf.FloorToInt(GameStats.CurrentWave / _enemyStats.XPercentAttackSpeedIncreasePerYWaves.y));
+        _preparationForAttackTimer = _preparationForAttackDuration;
     }
 
     protected override void Update()

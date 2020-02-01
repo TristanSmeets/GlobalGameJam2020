@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -32,6 +32,14 @@ public class EnemyStats : MonoBehaviour
     public int MaxHealth { get => _baseHealth; }
     public int MaxStunHealth { get => _baseStunHealth; }
     public int Damage { get => _baseDamage; }
-    public float AttackRange { get => _attackRange; }
+    public float AttackRange
+    {
+        get => _attackRange;
+        set
+        {
+            _attackRange = value;
+            GetComponent<NavMeshAgent>().stoppingDistance = _attackRange;
+        }
+    }
     public float WaitTimeAfterAttack { get => _waitTimeAfterAttack; }
 }

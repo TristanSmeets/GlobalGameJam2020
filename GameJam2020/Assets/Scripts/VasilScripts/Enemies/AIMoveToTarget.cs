@@ -10,6 +10,7 @@ public class AIMoveToTarget : MonoBehaviour
     private AIBehavior _aiBehavior;
     private EnemyStats _enemyStats;
 
+
     void Start()
     {
         _targetTransform = GameObject.Find("Player").GetComponent<Transform>();
@@ -32,4 +33,5 @@ public class AIMoveToTarget : MonoBehaviour
 
     public Vector3 GetVelocity() { if(_navMeshAgent) return _navMeshAgent.velocity; else return Vector3.zero; }
     public float GetDistanceToTarget() { return Vector3.Distance(transform.position, _targetTransform.position); }
+    public Transform TargetTransform { get => _targetTransform; }
 }

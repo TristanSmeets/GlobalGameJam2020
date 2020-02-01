@@ -60,6 +60,7 @@ public abstract class AIBehavior : MonoBehaviour
                     if(_aiMoveToTarget.GetVelocity().magnitude <= 1)
                     {
                         Attack();
+                        transform.LookAt(new Vector3(_aiMoveToTarget.TargetTransform.position.x, transform.position.y, _aiMoveToTarget.TargetTransform.transform.position.z));
                     }
                 }
                 break;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 378660609852244977}
   - component: {fileID: 8654303776127203783}
   - component: {fileID: 3109394719305221438}
-  - component: {fileID: 7882902843861711341}
+  - component: {fileID: 2243614508893604569}
   m_Layer: 0
   m_Name: PipedWall0D
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7882902843861711341
-BoxCollider:
+--- !u!64 &2243614508893604569
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +90,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.061642, y: 3.9180934, z: 0.68948483}
-  m_Center: {x: 1.9691789, y: 1.9590467, z: 0.20084155}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8287628179892345451, guid: f872267fae7ca2e4cb13ef9ca52d25e2, type: 3}

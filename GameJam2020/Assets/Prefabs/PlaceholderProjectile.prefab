@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    LifeTime: 0
+    LifeTime: 1.5
 --- !u!135 &7625781912758152362
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -8,17 +8,20 @@ using UnityEngine;
 namespace Weapon
 {
     public enum WeaponType { SHOTGUN, ASSAULT_RIFLE, SNIPER };
-    public abstract class AbstractWeapon
+    public abstract class AbstractWeapon : MonoBehaviour
     {
-        [SerializeField] protected float fireSpeed = 10.0f;
-        [SerializeField] protected float damage = 10.0f;
-        [SerializeField] protected float fireRange = 10.0f;
-        [SerializeField] protected WeaponType weaponType;
+        [SerializeField] protected GameObject projectile = null;
+        [SerializeField] protected Transform projectileSpawn = null;
+        [SerializeField] protected WeaponSpecifics weaponSpecifics;
+        protected Transform cachedTransform = null;
+        protected float cooldownTimer = 0.0f;
+
+        protected virtual void OnEnable()
+        {
+            cachedTransform = gameObject.transform;
+        }
 
         public abstract void Fire();
-        public WeaponType GetWeaponType()
-        {
-            return weaponType;
-        }
+        public abstract WeaponType GetWeaponType();
     }
 }

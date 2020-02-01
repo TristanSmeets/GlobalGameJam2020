@@ -5,13 +5,14 @@ using Weapon;
 
 public class Player : MonoBehaviour
 {
-    Controller controller;
-    WeaponManager weaponManager = new WeaponManager();
-    AbstractWeapon abstractWeapon;
+    Controller controller = null;
+    WeaponManager weaponManager = null;
+    AbstractWeapon abstractWeapon = null;
 
     private void OnEnable()
     {
         controller = GetComponent<Controller>();
+        weaponManager = GetComponent<WeaponManager>();
         abstractWeapon = weaponManager.GetWeapon(WeaponType.ASSAULT_RIFLE);
 
         AddListeners();

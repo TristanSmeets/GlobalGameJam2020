@@ -4,18 +4,20 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class WeaponManager
+    public class WeaponManager : MonoBehaviour
     {
-        private Dictionary<WeaponType, AbstractWeapon> weapons = new Dictionary<WeaponType, AbstractWeapon>();
+        [SerializeField] private AbstractWeapon[] weapons = new AbstractWeapon[3];
 
-        public WeaponManager()
-        { 
-            // Add Weapon Implementations here.
-        }
-
-        public AbstractWeapon GetWeapon(WeaponType weapon)
+        public AbstractWeapon GetWeapon(WeaponType weaponType)
         {
-            return weapons[weapon];
+            for(int i = 0; i < weapons.Length; ++i)
+            {
+                if(weapons[i].GetWeaponType() == weaponType)
+                {
+                    return weapons[i];
+                }
+            }
+            return null;
         }
     }
 }

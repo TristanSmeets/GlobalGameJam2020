@@ -5,6 +5,12 @@ namespace Weapon
     public class AssaultRifle : AbstractWeapon
     {
         [SerializeField] private Vector2 offsetRange = Vector2.zero;
+        private ParticleSystem particleSystem;
+
+        private void Start()
+        {
+            particleSystem = GetComponentInChildren<ParticleSystem>();
+        }
 
         public override void FireWeapon()
         {
@@ -12,6 +18,7 @@ namespace Weapon
 
             if (cooldownTimer <= 0)
             {
+                particleSystem.Play();
                 WeaponKnockback(weaponKnockbackAmount);
                 Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 0.25f);
                 Projectile newProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();

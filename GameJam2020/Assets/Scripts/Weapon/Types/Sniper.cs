@@ -6,6 +6,13 @@ namespace Weapon
 {
     public class Sniper : AbstractWeapon
     {
+        private ParticleSystem particleSystem;
+
+        private void Start()
+        {
+            particleSystem = GetComponentInChildren<ParticleSystem>();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -20,6 +27,7 @@ namespace Weapon
             cooldownTimer -= Time.deltaTime;
             if (cooldownTimer < 0)
             {
+                particleSystem.Play();
                 Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 1.5f);
                 WeaponKnockback(weaponKnockbackAmount);
                 Projectile newProjectile = Instantiate(projectilePrefab, 

@@ -1,8 +1,10 @@
-﻿Shader "Custom/ObjectGlitcher"
+﻿Shader "Custom/SpikeParticle"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
+        [HDR]_Color ("Color", Color) = (1,1,1,1)
+        [HDR]_MidColor("Mid Color", Color) = (1,1,1,1)
+        [HDR]_TipColor("Tip Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
@@ -10,6 +12,7 @@
         [Header(Glitch Variables)]
         [Toggle]_Glitching("Glitching", float) = 0
         _GlitchDistance("Glitch Distance", float) = 0.1
+        _GlitchSpeed("Glitch Speed", float) = 1
         _Tess("Tessellation", float) = 16
         _Value("Time", Range(0, 1)) = 0
     }
@@ -19,17 +22,20 @@
         LOD 200
         CGPROGRAM
         #pragma require tessellation tessHW
-        #pragma surface surf Standard vertex:vert tessellate:tess fullforwardshadows addshadow
+        #pragma surface surf Standard vertex:vert tessellate:tess //finalcolor:finalColor
         #pragma target 3.0
 
         sampler2D _MainTex;
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
-        float _Glitching;
+        fixed4 _TipColor;
+        fixed4 _MidColor;
 
         //Glitch variables
         float _GlitchDistance;
+        float _Glitching;
+        float _GlitchSpeed;
         float _Tess;
         float _Value;
 
@@ -72,7 +78,7 @@
                     if (v.vertex.y > midPoint - halfSize && v.vertex.y < midPoint + halfSize)
                     {
                         float4 wpos = mul(unity_ObjectToWorld, float4(0,0,0,1));
-                        float dist = random(float2(j * 923.219, j * 453.127 * floor(wpos.x * 10) * floor(wpos.z * 10)));
+                        float dist = random(float2(j * 923.219 + (_Time.z * _GlitchSpeed), j * 453.127 * floor(wpos.x * 10) * floor(wpos.z * 10)));
                         v.vertex.x += _GlitchDistance * ((dist * 2) - 1);
                     }
                 }
@@ -85,8 +91,18 @@
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
+            if (IN.uv_MainTex.y < 0.5)
+                o.Emission = lerp(_Color, _MidColor, IN.uv_MainTex.y * 2);
+            else
+                o.Emission = lerp(_MidColor, _TipColor, (IN.uv_MainTex.y - 0.5) * 2);
+
             o.Alpha = c.a;
         }
+
+        //void finalColor(Input IN, SurfaceOutputStandard o, inout fixed4 color)
+        //{
+        //    color = float4(1, 0, 0, 1);
+        //}
         ENDCG
     }
     FallBack "Diffuse"

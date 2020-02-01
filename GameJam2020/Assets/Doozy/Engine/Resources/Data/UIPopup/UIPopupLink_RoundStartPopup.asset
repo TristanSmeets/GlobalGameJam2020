@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c04155d43740f46a3223a7eb386e0c, type: 3}
-  m_Name: _UIPopupDatabase
+  m_Script: {fileID: 11500000, guid: 17215f689fb19554ab6b81c2308113df, type: 3}
+  m_Name: UIPopupLink_RoundStartPopup
   m_EditorClassIdentifier: 
-  PopupNames:
-  - RoundStartPopup
-  Popups:
-  - {fileID: 11400000, guid: ae136a9f0153e334ab204902652dde70, type: 2}
+  PopupName: RoundStartPopup
+  Prefab: {fileID: 4200785732183868859, guid: c29a372a16315db488446c04fc159ca4, type: 3}

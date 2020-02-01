@@ -147,4 +147,8 @@ MonoBehaviour:
     FireRate: 0.16
     FireRange: 25
     ProjectileSpeed: 100
+  weaponKnockbackAmount: -10
+  weaponKnockbackSpeed: 40
+  weaponUnKnockbackSpeed: 30
+  weaponKnockbackAngle: 0
   offsetRange: {x: 10, y: 0}

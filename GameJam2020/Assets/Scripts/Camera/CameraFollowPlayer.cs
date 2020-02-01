@@ -20,6 +20,9 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField]
     private float screenShakeDistance = 1;
 
+    private float distanceMultiplier = 1;
+    private float speedMultiplier = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +51,8 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         if(screenShake)
         {
-            Vector3 randomOffset = new Vector3(Random.Range(-1, 2), 0, Random.Range(-1, 2)).normalized * screenShakeDistance;
-            adjustedOffset = Vector3.Lerp(adjustedOffset, defaultOffset + randomOffset, Time.fixedDeltaTime * screenShakeSpeed);
+            Vector3 randomOffset = new Vector3(Random.Range(-1, 2), 0, Random.Range(-1, 2)).normalized * screenShakeDistance * distanceMultiplier;
+            adjustedOffset = Vector3.Lerp(adjustedOffset, defaultOffset + randomOffset, Time.fixedDeltaTime * screenShakeSpeed * speedMultiplier);
         }
         else
         {
@@ -65,15 +68,19 @@ public class CameraFollowPlayer : MonoBehaviour
         transform.position = new Vector3(lerpedPos.x, transform.position.y, lerpedPos.z);
     }
 
-    public void ShakeCamera(float seconds)
+    public void ShakeCamera(float _seconds, float _distanceMultiplier = 1, float _speedMultiplier = 1)
     {
+        if(!screenShake || _distanceMultiplier >= distanceMultiplier)
         screenShake = true;
-        StartCoroutine(ShakeCameraIE(seconds));
+        StartCoroutine(ShakeCameraIE(_seconds));
+
+        distanceMultiplier = _distanceMultiplier;
+        speedMultiplier = _speedMultiplier;
     }
 
-    IEnumerator ShakeCameraIE(float seconds)
+    IEnumerator ShakeCameraIE(float _seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(_seconds);
         screenShake = false;
     }
 }

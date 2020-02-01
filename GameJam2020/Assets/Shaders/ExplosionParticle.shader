@@ -97,7 +97,7 @@
             color = lerp(color, _GlitchColor, isGlitching * agePercent);
 
             fixed4 c = saturate(color);
-            o.Emission = color;
+            o.Emission = color * (isGlitching * 2);
             o.Alpha = saturatedMask;
             o.Albedo = c.rgb;
             o.Metallic = 0;

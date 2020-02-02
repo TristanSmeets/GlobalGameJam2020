@@ -42,6 +42,7 @@ public class GameStats : MonoBehaviour
         UpgradeScreen.StartNextRound += NextRound;
         _roundHasEnded = true;
         _waveHasEnded = true;
+        NextRound();
     }
 
     private void OnDestroy()

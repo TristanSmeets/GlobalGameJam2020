@@ -7740,7 +7740,7 @@ GameObject:
   - component: {fileID: 6039614045706363004}
   - component: {fileID: 1151896599610095879}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7753,17 +7753,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2785157411356623898}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4200785732183868858}
-  m_RootOrder: 2
+  m_Father: {fileID: 4200785731126068523}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.85565186}
+  m_SizeDelta: {x: 0, y: 134.15631}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6039614045706363004
 CanvasRenderer:
@@ -10329,6 +10329,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1685549511737307983}
   - {fileID: 2148217114664764402}
   - {fileID: 2621761798345555069}
   m_Father: {fileID: 4200785732183868858}
@@ -10457,7 +10458,6 @@ RectTransform:
   m_Children:
   - {fileID: 4200785731126068523}
   - {fileID: 241474918552614143}
-  - {fileID: 1685549511737307983}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11430,7 +11430,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4200785731126068523}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -14275,7 +14275,7 @@ RectTransform:
   - {fileID: 6030090438071516809}
   - {fileID: 3643896805934327270}
   m_Father: {fileID: 4200785731126068523}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.035481833, y: 0.25113297}
   m_AnchorMax: {x: 0.9752719, y: 0.8311931}
@@ -14368,7 +14368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 7646231426894237173}
+  m_FirstSelected: {fileID: 1190635642620911650}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &1960178749171921658

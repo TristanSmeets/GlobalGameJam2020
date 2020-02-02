@@ -28,7 +28,7 @@ namespace Weapon
             weaponSpecifics.Damage,
             weaponSpecifics.Stun,
             weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed);
-            cooldownTimer = 0;
+            cooldownTimer = weaponSpecifics.FireRate / (1 + TotalFireRateIncrease * 0.01f);
         }
         public override void FireWeapon()
         {

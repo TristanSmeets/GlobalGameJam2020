@@ -56,7 +56,7 @@ public class FogColorSwitcher : MonoBehaviour
 
     private IEnumerator BlueFade()
     {
-        while (val > 1)
+        while (val > 0)
         {
             val -= 0.01f;
             renderer.material.SetFloat("_Shift", val);

@@ -66,7 +66,7 @@ public class GrenadeTravel : MonoBehaviour
         float distCovered = (Time.time - _startTime) * 30;
         float fracJourney = distCovered / _travelLenght;
         transform.position = Vector3.Lerp(_startPos, _endPos, fracJourney);
-        if(fracJourney >= 1f && _currentStartPoint + 2 < _waypoints.Length)
+        if (fracJourney >= 1f && _currentStartPoint + 2 < _waypoints.Length)
         {
             _currentStartPoint++;
             _startPos = _waypoints[_currentStartPoint];
@@ -75,7 +75,7 @@ public class GrenadeTravel : MonoBehaviour
             _startTime = Time.time;
         }
 
-        if(_currentStartPoint == _waypoints.Length - 2)
+        if (_currentStartPoint == _waypoints.Length - 2)
         {
             _shouldExplode = true;
         }
@@ -100,7 +100,17 @@ public class GrenadeTravel : MonoBehaviour
     private void OnDestroy()
     {
         int rand = Random.Range(0, 1);
-        GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
+
+        GameObject gameManager = GameObject.Find("GameManager");
+        if(gameManager)
+        {
+            SoundManagement soundManagement = gameManager.GetComponent<SoundManagement>();
+            if(soundManagement)
+            {
+                soundManagement.PlayAudioClip(soundManagement.AudioClips[rand]);
+            }
+        }
+        //GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
     }
 
     public void Init(Vector3 pTargetLocation, float pFuseTime, int pDamage)
@@ -125,14 +135,14 @@ public class GrenadeTravel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<AIBehavior>())
+        if (other.GetComponent<AIBehavior>())
         {
-            if(_damageCollider.enabled)
+            if (_damageCollider.enabled)
                 other.GetComponent<AIBehavior>().TakeDamage(_damage / 2, 100);
         }
-        else if(other.GetComponent<IDamageable>() != null)
+        else if (other.GetComponent<IDamageable>() != null)
         {
-            if(_damageCollider.enabled)
+            if (_damageCollider.enabled)
                 other.GetComponent<IDamageable>().TakeDamage(_damage);
         }
     }

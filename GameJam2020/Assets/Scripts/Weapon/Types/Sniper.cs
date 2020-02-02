@@ -25,16 +25,18 @@ namespace Weapon
         public override void FireWeapon()
         {
             cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer < 0)
+            if(cooldownTimer < 0)
             {
                 particleSystem.Play();
                 Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 1.5f);
                 WeaponKnockback(weaponKnockbackAmount);
-                Projectile newProjectile = Instantiate(projectilePrefab, 
-                    projectileSpawn.position, 
+                Projectile newProjectile = Instantiate(projectilePrefab,
+                    projectileSpawn.position,
                     projectileSpawn.rotation).GetComponent<Projectile>();
                 newProjectile.SetProjectileStats(projectileStats);
                 cooldownTimer = weaponSpecifics.FireRate;
+
+                PlaySoundEffect(5);
             }
         }
 

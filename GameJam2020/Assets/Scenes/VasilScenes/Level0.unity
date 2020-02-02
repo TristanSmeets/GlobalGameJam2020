@@ -4856,6 +4856,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1581249930, guid: 82695e271e45c9a4cb12020b3fe9f23d, type: 3}
+      propertyPath: AudioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d4291bc9915ddf46b36073291bba989, type: 3}
+    - target: {fileID: 1581249931, guid: 82695e271e45c9a4cb12020b3fe9f23d, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7865321394930487780, guid: 82695e271e45c9a4cb12020b3fe9f23d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22628,9 +22636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 5326842454518574189, guid: 7a557f0ad8b9dc041ac2c235c2b111db, type: 3}
-  - {fileID: 8401620426824003103, guid: e5ee612b85e6e1d4693b7c964f745987, type: 3}
-  - {fileID: 1001086175993951899, guid: 5e86e62b263c8a841ba308ca23b16d21, type: 3}
+  - {fileID: 9030480386821713136, guid: 75cc2a29850d46f4aafbc7780ce90b51, type: 3}
+  - {fileID: 2004213466160037786, guid: 20517845a7a2b784292a73fa63625209, type: 3}
+  - {fileID: 231887980260655086, guid: e39a523474dcc6c43b41938e6fcc2118, type: 3}
   WeaponSpawn: {fileID: 2027950615271554835}
 --- !u!114 &809447983
 MonoBehaviour:

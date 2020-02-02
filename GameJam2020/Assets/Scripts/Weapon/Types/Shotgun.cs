@@ -18,11 +18,11 @@ namespace Weapon
         {
             cooldownTimer -= Time.deltaTime;
 
-            if (cooldownTimer < 0)
+            if(cooldownTimer < 0)
             {
                 WeaponKnockback(weaponKnockbackAmount);
                 particleSystem.Play();
-                for (int i = 0; i < pellets; ++i)
+                for(int i = 0; i < pellets; ++i)
                 {
                     Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 1f);
                     Projectile newProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();
@@ -30,7 +30,9 @@ namespace Weapon
                     newProjectile.transform.Rotate(Vector3.right, Random.Range(-offsetRange.y, offsetRange.y));
                     newProjectile.SetProjectileStats(projectileStats);
                     cooldownTimer = weaponSpecifics.FireRate;
+
                 }
+                PlaySoundEffect(3);
             }
         }
 

@@ -16,7 +16,7 @@ namespace Weapon
         {
             cooldownTimer -= Time.deltaTime;
 
-            if (cooldownTimer <= 0)
+            if(cooldownTimer <= 0)
             {
                 particleSystem.Play();
                 WeaponKnockback(weaponKnockbackAmount);
@@ -26,6 +26,8 @@ namespace Weapon
                 newProjectile.transform.Rotate(Vector3.right, Random.Range(-offsetRange.y, offsetRange.y));
                 newProjectile.SetProjectileStats(projectileStats);
                 cooldownTimer = weaponSpecifics.FireRate;
+
+                PlaySoundEffect(4);
             }
         }
 

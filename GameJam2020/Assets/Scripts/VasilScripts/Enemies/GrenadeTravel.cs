@@ -97,11 +97,11 @@ public class GrenadeTravel : MonoBehaviour
         }
     }
 
-    //private void OnDestroy()
-    //{
-    //    int rand = Random.Range(0, 1);
-    //    GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
-    //}
+    private void OnDestroy()
+    {
+        int rand = Random.Range(0, 1);
+        GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
+    }
 
     public void Init(Vector3 pTargetLocation, float pFuseTime, int pDamage)
     {

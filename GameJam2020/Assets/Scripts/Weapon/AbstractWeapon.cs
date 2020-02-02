@@ -40,7 +40,7 @@ namespace Weapon
 
         protected virtual void WeaponRotation()
         {
-            if (weaponGettingKnockedback) 
+            if(weaponGettingKnockedback)
             {
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(weaponKnockbackAngle, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z), Time.deltaTime * weaponKnockbackSpeed);
                 if(Quaternion.Angle(Quaternion.Euler(transform.localRotation.eulerAngles.x, 0, 0), Quaternion.Euler(weaponKnockbackAngle, 0, 0)) < 0.1f)
@@ -57,5 +57,11 @@ namespace Weapon
 
         public abstract void FireWeapon();
         public abstract WeaponType GetWeaponType();
+
+        protected void PlaySoundEffect(int pClipIndex)
+        {
+            SoundManagement sm = GameObject.Find("GameManager").GetComponent<SoundManagement>();
+            sm.PlayAudioClip(sm.AudioClips[pClipIndex]);
+        }
     }
 }

@@ -46,7 +46,7 @@ public class GrenadeTravel : MonoBehaviour
     private void TextInit()
     {
         canvas = GameObject.Find("Canvas");
-        if (canvas && textPrefab)
+        if(canvas && textPrefab)
         {
             GameObject instantiatedText = Instantiate(textPrefab, canvas.transform);
             textMeshProUGUI = instantiatedText.GetComponent<TextMeshProUGUI>();
@@ -85,16 +85,20 @@ public class GrenadeTravel : MonoBehaviour
         if(_fuseTime <= 0)
         {
             _damageCollider.enabled = true;
-            if (_shouldDieInFrames == 0)
+            if(_shouldDieInFrames == 0)
             {
-                RaycastHit hit;
-                Physics.Raycast(transform.position, Vector3.down, out hit);
-                Instantiate(explosionPrefab, hit.point, Quaternion.Euler(0, 0, 0), transform.parent);
+                Instantiate(explosionPrefab, transform.position, Quaternion.Euler(0, 0, 0), transform.parent);
                 Destroy(textMeshProUGUI.gameObject);
                 Destroy(this.gameObject);
             }
             _shouldDieInFrames--;
         }
+    }
+
+    private void OnDestroy()
+    {
+        int rand = Random.Range(0, 1);
+        GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
     }
 
     public void Init(Vector3 pTargetLocation, float pFuseTime, int pDamage)
@@ -132,7 +136,7 @@ public class GrenadeTravel : MonoBehaviour
 
     private void Text()
     {
-        if (canvas && textMeshProUGUI)
+        if(canvas && textMeshProUGUI)
         {
             textMeshProUGUI.text = (Mathf.Round(_fuseTime * 10) * 0.1).ToString();
             Vector3 scrPoint = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));

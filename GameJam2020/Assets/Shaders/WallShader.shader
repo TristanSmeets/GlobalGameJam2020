@@ -68,7 +68,7 @@
                 float rand = random(float2(value, value));
                 float sinVal = sin((_Time.z * _CubeSpeed) + (rand * 421));
                 sinVal = (sinVal + 1) * 0.5;
-                v.vertex.x += sinVal* _MaxCubeDistance;
+                v.vertex.z -= sinVal* _MaxCubeDistance;
             }
         }
 

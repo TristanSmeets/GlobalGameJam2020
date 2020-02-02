@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3217596437713195362}
   - component: {fileID: 3217596437713195363}
   - component: {fileID: 304187719}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Zerg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -111,9 +111,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.5
+  m_Height: 2
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!195 &3217596437713195360
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 3217596438018377754}
   - component: {fileID: 3217596438018377753}
   - component: {fileID: 3217596438018377752}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

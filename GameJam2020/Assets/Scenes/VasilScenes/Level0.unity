@@ -4856,14 +4856,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1581249930, guid: 82695e271e45c9a4cb12020b3fe9f23d, type: 3}
-      propertyPath: AudioClips.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 3d4291bc9915ddf46b36073291bba989, type: 3}
-    - target: {fileID: 1581249931, guid: 82695e271e45c9a4cb12020b3fe9f23d, type: 3}
-      propertyPath: m_Volume
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 7865321394930487780, guid: 82695e271e45c9a4cb12020b3fe9f23d,
         type: 3}
       propertyPath: m_LocalPosition.x

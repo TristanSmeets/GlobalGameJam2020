@@ -27,7 +27,6 @@ public class Projectile : MonoBehaviour
 
     private void SetDestroyTime(float timeInSeconds)
     {
-        Debug.Log(timeInSeconds);
         Destroy(gameObject, timeInSeconds);
     }
 

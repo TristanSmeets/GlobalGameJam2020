@@ -7,7 +7,10 @@ using UnityEngine;
 public class ScreenGlitchController : MonoBehaviour
 {
     private ScreenGlitching[] screenGlitchers;
+    private HealthComponent playerHealth;
 
+    [SerializeField]
+    private bool playerHealthDependant = false;
     [SerializeField]
     [Range(0, 1)]
     private float glitch = 0;
@@ -23,6 +26,10 @@ public class ScreenGlitchController : MonoBehaviour
     private void OnEnable()
     {
         screenGlitchers = GetComponents<ScreenGlitching>();
+        GameObject player = GameObject.Find("Player");
+        playerHealth = player.GetComponent<HealthComponent>();
+        if (playerHealthDependant)
+            player.GetComponent<Player.Player>().DamagedPlayer += UpdateGlitching;
 
         if (screenGlitchers != null && screenGlitchers.Length > 0)
         {
@@ -53,6 +60,11 @@ public class ScreenGlitchController : MonoBehaviour
             UpdateDistances(i, glitch);
         }
     } 
+
+    private void UpdateGlitching(float currentHealth)
+    {
+        glitch = (1 - Mathf.Clamp01(currentHealth / playerHealth.GetMaxHealth())) * 0.3f;
+    }
 
     private void UpdateStripeAmount(int _scriptIndex, float glitchValue)
     {

@@ -15,7 +15,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
     [SerializeField]
     private int _grenadeFuseTime;
 
-    private float _animationTime = 1;
+    private float _animationTime = 0.5f;
     private float _preparationForAttackTimer;
     private float _grenadeTossTimer;
     private int _grenadeDamage;
@@ -31,7 +31,6 @@ public class AIChunkyMonkeyBehavior : AIBehavior
         _enemyStats.AttackRange = _grenadeTossRange;
         _preparationForAttackDuration /= 1 + (_enemyStats.XPercentAttackSpeedIncreasePerYWaves.x * 0.01f * Mathf.FloorToInt(GameStats.CurrentWave / _enemyStats.XPercentAttackSpeedIncreasePerYWaves.y));
         _preparationForAttackTimer = _preparationForAttackDuration;
-        _grenadeDamage = _enemyStats.Damage * 2;
     }
 
     protected override void Update()
@@ -54,13 +53,10 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                     //Play attack animation and Wait() after it's finished
                     _animationTime -= Time.deltaTime;
 
-                    if(_grenadeTossTimer <= 0 && !_gotGrenadeTossPos && _animationTime > 0.5f)
+                    if(_grenadeTossTimer <= 0 && !_gotGrenadeTossPos && _animationTime > 0.25f)
                     {
-                        if(_aiMoveToTarget.GetDistanceToTarget() > _enemyStats.AttackRange * 0.5f)
-                        {
-                            _grenadeTossPos = _aiMoveToTarget.TargetTransform.position;// - Vector3.up * _aiMoveToTarget.TargetTransform.GetComponentInChildren<Collider>().bounds.extents.y;
-                            _gotGrenadeTossPos = true;
-                        }
+                        _grenadeTossPos = _aiMoveToTarget.TargetTransform.position;// - Vector3.up * _aiMoveToTarget.TargetTransform.GetComponentInChildren<Collider>().bounds.extents.y;
+                        _gotGrenadeTossPos = true;
                     }
 
                     if(_gotGrenadeTossPos)
@@ -70,7 +66,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                         _gotGrenadeTossPos = false;
                     }
 
-                    if(_animationTime <= 0.25f)
+                    if(_animationTime <= 0.1f)
                     {
                         _normalAttackCollider.enabled = true;
                     }
@@ -80,7 +76,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                     return;
 
                 _preparationForAttackTimer = _preparationForAttackDuration;
-                _animationTime = 1;
+                _animationTime = 0.5f;
                 _gotGrenadeTossPos = false;
                 _enemyStats.AttackRange = _normalAttackRange;
                 _normalAttackCollider.enabled = false;
@@ -92,7 +88,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
     private void TossGrenade(Vector3 pTargetLocation)
     {
         GameObject go = Instantiate(_grenadePrefab, transform.position + transform.forward * 0.2f, Quaternion.identity);
-        go.GetComponent<GrenadeTravel>().Init(pTargetLocation, _grenadeFuseTime, _grenadeDamage);
+        go.GetComponent<GrenadeTravel>().Init(pTargetLocation, _grenadeFuseTime, _enemyStats.Damage * 3);
     }
 
     private void OnTriggerEnter(Collider other)

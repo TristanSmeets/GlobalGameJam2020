@@ -39,8 +39,15 @@ public class GameStats : MonoBehaviour
     private void Start()
     {
         OnWaveEnd += OnWaveEnded;
+        UpgradeScreen.StartNextRound += NextRound;
         _roundHasEnded = true;
         _waveHasEnded = true;
+    }
+
+    private void OnDestroy()
+    {
+        OnWaveEnd -= OnWaveEnd;
+        UpgradeScreen.StartNextRound -= NextRound;
     }
 
     private void Update()

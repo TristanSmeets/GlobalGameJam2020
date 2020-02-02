@@ -105,6 +105,7 @@ public class GrenadeTravel : MonoBehaviour
     {
         _fuseTime = pFuseTime;
         _damage = pDamage;
+
         Vector3 increment = (pTargetLocation - transform.position) / (_waypoints.Length - 1);
         for(int i = 0; i < _waypoints.Length; i++)
         {
@@ -131,6 +132,7 @@ public class GrenadeTravel : MonoBehaviour
         {
             if(_damageCollider.enabled)
                 other.GetComponent<IDamageable>().TakeDamage(_damage);
+            print(_damage);
         }
     }
 

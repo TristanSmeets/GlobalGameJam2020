@@ -6,9 +6,11 @@ public class AIExplodeBoyBehavior : AIBehavior
 {
     [SerializeField]
     private float _preparationForAttackDuration;
+    [SerializeField]
+    private GameObject _explodePrefab;
 
     private SphereCollider _deathCollider;
-    private int _shouldDieInFrames = 2;
+    private int _shouldDieInFrames = 4;
 
     protected override void Start()
     {
@@ -42,6 +44,11 @@ public class AIExplodeBoyBehavior : AIBehavior
         {
             case AIState.Attacking:
                 _preparationForAttackDuration -= Time.deltaTime;
+                if(_preparationForAttackDuration <= 0.15f)
+                {
+                    if(!GetComponentInChildren<Animation>().isPlaying)
+                        GetComponentInChildren<Animation>().Play();
+                }
                 if(_preparationForAttackDuration <= 0)
                 {
                     Explode();
@@ -58,14 +65,11 @@ public class AIExplodeBoyBehavior : AIBehavior
             GetComponent<Collider>().enabled = false;
         }
 
-        transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 10;
-        if(transform.localScale.x >= 3)
-        {
-            _deathCollider.enabled = true;
-            if(_shouldDieInFrames == 0)
-                Destroy(this.gameObject);
-            _shouldDieInFrames--;
-        }
+        //Change Color of Material to red
+        _deathCollider.enabled = true;
+        if(_shouldDieInFrames == 0)
+            Destroy(this.gameObject);
+        _shouldDieInFrames--;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -80,5 +84,11 @@ public class AIExplodeBoyBehavior : AIBehavior
             if(_deathCollider.enabled)
                 other.gameObject.GetComponent<IDamageable>().TakeDamage(_enemyStats.Damage);
         }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Instantiate(_explodePrefab, transform.position, Quaternion.identity);
     }
 }

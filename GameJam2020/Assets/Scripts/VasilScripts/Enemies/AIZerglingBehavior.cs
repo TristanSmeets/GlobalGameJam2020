@@ -13,7 +13,7 @@ public class AIZerglingBehavior : AIBehavior
     [SerializeField]
     private float _jumpAttackRange;
 
-    private float _animationTime = 1;
+    private float _animationTime = 0.5f;
     private float _preparationForAttackTimer;
     private float _jumpTimer;
     private bool _gotJumpPos;
@@ -45,12 +45,10 @@ public class AIZerglingBehavior : AIBehavior
                 _preparationForAttackTimer -= Time.deltaTime;
                 if(_preparationForAttackTimer <= 0)
                 {
-                    //Play attack animation and Wait() after it's finished
                     _animationTime -= Time.deltaTime;
-
-                    if(_jumpTimer <= 0 && !_gotJumpPos && _animationTime > 0.5f)
+                    if(_jumpTimer <= 0 && !_gotJumpPos && _animationTime > 0.25f)
                     {
-                        if(_aiMoveToTarget.GetDistanceToTarget() > _enemyStats.AttackRange * 0.5f)
+                        if(_aiMoveToTarget.GetDistanceToTarget() > _enemyStats.AttackRange * 0.25f)
                         {
                             _jumpToPos = transform.position + transform.forward * (_aiMoveToTarget.GetDistanceToTarget() -
                                                                                    GetComponent<Collider>().bounds.extents.x -
@@ -66,9 +64,11 @@ public class AIZerglingBehavior : AIBehavior
                         _jumpTimer = _jumpCooldown;
                     }
 
-                    if(_animationTime <= 0.25f)
+                    if(_animationTime <= 0.1f)
                     {
                         _normalAttackCollider.enabled = true;
+                        if(!GetComponentInChildren<Animation>().isPlaying)
+                            GetComponentInChildren<Animation>().Play();
                     }
                 }
 
@@ -76,7 +76,7 @@ public class AIZerglingBehavior : AIBehavior
                     return;
 
                 _preparationForAttackTimer = _preparationForAttackDuration;
-                _animationTime = 1;
+                _animationTime = 0.5f;
                 _gotJumpPos = false;
                 _normalAttackCollider.enabled = false;
                 Wait(_enemyStats.WaitTimeAfterAttack);

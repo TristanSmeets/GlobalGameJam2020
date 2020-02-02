@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,6 +9,7 @@ public class UpgradeScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
     private PlayerUpgrades playerUpgrades = null;
     private PlayerUpgrades.UpgradeType selectedUpgrade = PlayerUpgrades.UpgradeType.Damage;
+    public static event Action StartNextRound = delegate { };
     
     private void OnEnable()
     {
@@ -48,5 +50,6 @@ public class UpgradeScreen : MonoBehaviour
     {
         selectedUpgrade = (PlayerUpgrades.UpgradeType)upgrade;
         upgradeTexts[upgrade].SetText($"x {UpgradeText(selectedUpgrade) + 1}");
+        StartNextRound();
     }
 }

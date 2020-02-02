@@ -162,14 +162,14 @@ MonoBehaviour:
   _baseHealth: 50
   _baseStunHealth: 50
   _baseMovementSpeed: 6
-  _xPercentHealthIncreaseiPerYWaves: {x: 30, y: 2}
+  _xPercentHealthIncreaseiPerYWaves: {x: 5, y: 1}
   _xPercentStunHealthIncreasePerYWaves: {x: 0, y: 0}
-  _xPercentMovementSpeedIncreasePerYWaves: {x: 20, y: 2}
+  _xPercentMovementSpeedIncreasePerYWaves: {x: 5, y: 1}
   _baseDamage: 10
   _attackRange: 4
   _waitTimeAfterAttack: 0.5
-  _xPercentDamageIncreasePerYWaves: {x: 10, y: 2}
-  _xPercentAttackSpeedIncreasePerYWaves: {x: 50, y: 1}
+  _xPercentDamageIncreasePerYWaves: {x: 5, y: 1}
+  _xPercentAttackSpeedIncreasePerYWaves: {x: 10, y: 1}
 --- !u!114 &1840407237714681611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,11 +182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82fe11d784021a4b97c111828e01e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _preparationForAttackDuration: 1
+  _preparationForAttackDuration: 0.5
   _normalAttackRange: 4
   _grenadeTossRange: 10
-  _grenadeTossCooldown: 8
-  _grenadeFuseTime: 1
+  _grenadeTossCooldown: 1
+  _grenadeFuseTime: 3
 --- !u!54 &5644552988357133423
 Rigidbody:
   m_ObjectHideFlags: 0

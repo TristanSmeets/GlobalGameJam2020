@@ -211,14 +211,14 @@ MonoBehaviour:
   _baseHealth: 10
   _baseStunHealth: 99999
   _baseMovementSpeed: 10
-  _xPercentHealthIncreaseiPerYWaves: {x: 100, y: 2}
+  _xPercentHealthIncreaseiPerYWaves: {x: 50, y: 1}
   _xPercentStunHealthIncreasePerYWaves: {x: 0, y: 0}
-  _xPercentMovementSpeedIncreasePerYWaves: {x: 10, y: 2}
+  _xPercentMovementSpeedIncreasePerYWaves: {x: 5, y: 1}
   _baseDamage: 50
   _attackRange: 3
   _waitTimeAfterAttack: 9999
-  _xPercentDamageIncreasePerYWaves: {x: 5, y: 2}
-  _xPercentAttackSpeedIncreasePerYWaves: {x: 10, y: 2}
+  _xPercentDamageIncreasePerYWaves: {x: 5, y: 1}
+  _xPercentAttackSpeedIncreasePerYWaves: {x: 5, y: 1}
 --- !u!114 &2369999466006999178
 MonoBehaviour:
   m_ObjectHideFlags: 0

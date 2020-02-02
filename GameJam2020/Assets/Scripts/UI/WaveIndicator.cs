@@ -6,8 +6,6 @@ using TMPro;
 public class WaveIndicator : MonoBehaviour
 {
     private TextMeshProUGUI waveText;
-    private uint currentWave = 0;
-    private uint currentRound = 0;
     private void OnEnable()
     {
         waveText = GetComponentInChildren<TextMeshProUGUI>();
@@ -21,23 +19,13 @@ public class WaveIndicator : MonoBehaviour
     private void AddListeners()
     {
         GameStats.OnWaveStart += OnWaveStart;
-        GameStats.OnRoundStart += OnRoundStart;
     }
     private void RemoveListeners()
     {
         GameStats.OnWaveStart -= OnWaveStart;
-        GameStats.OnRoundStart -= OnRoundStart;
     }
     private void OnWaveStart()
     {
-        ++currentWave;
-
-        waveText.SetText($"Round: {currentRound}\nWave: {currentWave}");
-    }
-    private void OnRoundStart()
-    {
-        currentWave = 0;
-        ++currentRound;
-        waveText.SetText($"Round: {currentRound}\nWave: {currentWave}");
+        waveText.SetText($"Round: {GameStats.CurrentRound}\nWave: {GameStats.CurrentWave}");
     }
 }

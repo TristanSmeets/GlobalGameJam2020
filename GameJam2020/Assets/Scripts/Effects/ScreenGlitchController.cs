@@ -7,7 +7,11 @@ using UnityEngine;
 public class ScreenGlitchController : MonoBehaviour
 {
     private ScreenGlitching[] screenGlitchers;
+    private HealthComponent playerHealth;
+    private GameObject player;
 
+    [SerializeField]
+    private bool playerHealthDependant = false;
     [SerializeField]
     [Range(0, 1)]
     private float glitch = 0;
@@ -23,6 +27,13 @@ public class ScreenGlitchController : MonoBehaviour
     private void OnEnable()
     {
         screenGlitchers = GetComponents<ScreenGlitching>();
+        player = GameObject.Find("Player");
+        playerHealth = player.GetComponent<HealthComponent>();
+        if (playerHealthDependant)
+        {
+            player.GetComponent<Player.Player>().DamagedPlayer += UpdateGlitching;
+            Player.Player.OnPlayerDeath += DeadPlayer;
+        }
 
         if (screenGlitchers != null && screenGlitchers.Length > 0)
         {
@@ -54,6 +65,11 @@ public class ScreenGlitchController : MonoBehaviour
         }
     } 
 
+    private void UpdateGlitching(float currentHealth)
+    {
+        glitch = (1 - Mathf.Clamp01(currentHealth / playerHealth.GetMaxHealth())) * 0.5f;
+    }
+
     private void UpdateStripeAmount(int _scriptIndex, float glitchValue)
     {
         float val = 0;
@@ -82,5 +98,33 @@ public class ScreenGlitchController : MonoBehaviour
         else
             val = defaultDistances[_scriptIndex];
         screenGlitchers[_scriptIndex].GetMaterial().SetFloat("_StripesDistance", val);
+    }
+
+
+
+
+    //Death
+    private void DeadPlayer()
+    {
+        player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<Player.Player>().DamagedPlayer -= UpdateGlitching;
+        StartCoroutine(GlitchOut());
+    }
+
+    private IEnumerator GlitchOut()
+    {
+        while(glitch < 0.8f)
+        {
+            glitch += 0.01f;
+            yield return null;
+        }
+
+        glitch = 1.0f;
+        yield return null;
+    }
+
+    private void OnDisable()
+    {
+        Player.Player.OnPlayerDeath -= DeadPlayer;
     }
 }

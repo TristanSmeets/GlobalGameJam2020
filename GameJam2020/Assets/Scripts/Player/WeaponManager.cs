@@ -13,6 +13,9 @@ namespace Player
 
         public void SwitchWeapon(WeaponType weaponType)
         {
+            if(GetCurrentWeapon() != null && GetCurrentWeapon().GetWeaponType() == weaponType)
+                return;
+
             if(currentWeapon != null)
             {
                 Destroy(currentWeapon);

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1041276023106980127}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.004, y: 0.0512, z: 0.662}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 5407116470313623267}
   m_RootOrder: 0
@@ -4879,7 +4879,7 @@ Transform:
   m_GameObject: {fileID: 9030480386821713136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.267, y: 0.97, z: -3.083122}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1041276023106980126}
   - {fileID: 3585463270464913494}
@@ -4912,7 +4912,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -205629353262513385, guid: c806ea467be786743b7f93f832645c57, type: 3}
+  - {fileID: 2100000, guid: 311d53e82651cf24a8761ffdd31c6929, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a01aca95e70ff45989a102a204046d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5944906376788314545, guid: c3b64223d1320a64f92b526cb0d6740d,
+  projectilePrefab: {fileID: 9104117883147037653, guid: 20c1d615c350641459d054fcdcfd5650,
     type: 3}
   projectileSpawn: {fileID: 3585463270464913494}
   weaponSpecifics:

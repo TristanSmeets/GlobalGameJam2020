@@ -5,6 +5,8 @@
 		_NoiseTexture("Noise Texture", 2D) = "white" {}
 		_NoiseDirection("Noise Direction", Vector) = (1,0,0,0)
 		_FogColor("Fog Color", Color) = (1,1,1,1)
+		_FogColor2("Fog Color", Color) = (1,1,1,1)
+		_Shift("Shift", Range(0, 1)) = 0
 		_FogLength("Fog Density", float) = 0.01
 		_MaxDensity("Max Density", float) = 0.8
 	}
@@ -42,6 +44,8 @@
 			float4 _NoiseTexture_ST;
 			float4 _CameraDepthTexture_ST;
 			fixed4 _FogColor;
+			fixed4 _FogColor2;
+			float _Shift;
 			float _FogLength;
 			float4 _NoiseDirection;
 			float _MaxDensity;
@@ -70,7 +74,8 @@
 				depth -= noise;
 				float newDepth = saturate(depth - (dist * 0.1 * _FogLength));
 
-				return float4(_FogColor.xyz, min(min(newDepth, 1), _MaxDensity));
+				float3 fog = lerp(_FogColor.xyz, _FogColor2, _Shift);
+				return float4(fog, min(min(newDepth, 1), _MaxDensity));
 			}
 			ENDCG
 		}

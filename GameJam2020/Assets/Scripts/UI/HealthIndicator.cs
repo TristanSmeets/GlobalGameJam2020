@@ -7,7 +7,6 @@ using Doozy.Engine.Progress;
 public class HealthIndicator : MonoBehaviour
 {
     private Progressor progressor;
-    private float maxHealth = 100.0f;
     private Player.Player player;
     private const string playerTag = "Player";
 

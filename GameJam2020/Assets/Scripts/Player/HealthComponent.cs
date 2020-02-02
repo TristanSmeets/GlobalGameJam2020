@@ -13,7 +13,7 @@ public class HealthComponent : MonoBehaviour
     public void ChangeHealth(float delta)
     {
         currentHealth += delta;
-        if (currentHealth > maxHealth)
+        if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
@@ -37,5 +37,10 @@ public class HealthComponent : MonoBehaviour
     public float GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

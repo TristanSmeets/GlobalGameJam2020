@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        _enemyPrefabs = Resources.LoadAll<GameObject>("Enemies/");
+        _enemyPrefabs = Resources.LoadAll<GameObject>("Enemies/Entities/");
         _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         _gameStats = GetComponent<GameStats>();
     }

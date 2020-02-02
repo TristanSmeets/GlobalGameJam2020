@@ -17,6 +17,8 @@ namespace Player
 
         private Animator _animator;
 
+        private int _lastInput;
+
         private void OnEnable()
         {
             cachedTransform = gameObject.transform;
@@ -48,14 +50,16 @@ namespace Player
         private void CheckWeaponButtons()
         {
             //TODO: Make sure these only fire onces.
-            if(Input.GetAxis("Fire1") > 0)
+            if(Input.GetAxis("Fire1") > 0 && _lastInput != 1)
             {
                 SwitchingWeapon(Weapon.WeaponType.SHOTGUN);
+                _lastInput = 1;
             }
 
-            if(Input.GetAxis("Fire2") > 0)
+            if(Input.GetAxis("Fire2") > 0 && _lastInput != 2)
             {
                 SwitchingWeapon(Weapon.WeaponType.ASSAULT_RIFLE);
+                _lastInput = 2;
             }
 
             if(Input.GetAxis("Fire3") > 0)

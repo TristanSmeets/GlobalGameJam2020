@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42f06ff6cc543ea942180e019f0fc8d, type: 3}
-  m_Name: UIButton_General
+  m_Script: {fileID: 11500000, guid: 17215f689fb19554ab6b81c2308113df, type: 3}
+  m_Name: UIPopupLink_MainMenu
   m_EditorClassIdentifier: 
-  CategoryName: General
-  DatabaseType: 0
-  Names:
-  - Back
-  - Unnamed
-  - Upgrade
-  - Confirm
-  - StartGame
-  - ExitGame
+  PopupName: MainMenu
+  Prefab: {fileID: 8468894471919792160, guid: 17bc3e9c600672a41ba8c86957732a11, type: 3}

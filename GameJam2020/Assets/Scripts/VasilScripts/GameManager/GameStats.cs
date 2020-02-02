@@ -39,15 +39,21 @@ public class GameStats : MonoBehaviour
     private void Start()
     {
         OnWaveEnd += OnWaveEnded;
+        UpgradeScreen.StartNextRound += NextRound;
         _roundHasEnded = true;
         _waveHasEnded = true;
+    }
+
+    private void OnDestroy()
+    {
+        OnWaveEnd -= OnWaveEnd;
+        UpgradeScreen.StartNextRound -= NextRound;
     }
 
     private void Update()
     {
         if((Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Joystick1Button7)) && !_roundInProgress && _roundHasEnded)
         {
-
             if(OnRoundStart != null)
                 OnRoundStart();
             NextRound();
@@ -83,8 +89,6 @@ public class GameStats : MonoBehaviour
         _currentWave = 0;
         _roundInProgress = true;
         _roundHasEnded = false;
-        _waveInProgress = false;
-        _waveHasEnded = true;
 
         NextWave();
     }

@@ -17,3 +17,7 @@ MonoBehaviour:
   Names:
   - Back
   - Unnamed
+  - Upgrade
+  - Confirm
+  - StartGame
+  - ExitGame

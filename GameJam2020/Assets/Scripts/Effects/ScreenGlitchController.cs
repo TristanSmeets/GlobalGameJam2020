@@ -9,6 +9,13 @@ public class ScreenGlitchController : MonoBehaviour
     private ScreenGlitching[] screenGlitchers;
     private HealthComponent playerHealth;
     private GameObject player;
+    private PopupCreator popupCreator;
+    private GameObject canvas;
+
+    private GameObject deathScreen = null;
+
+    [SerializeField]
+    private GameObject gameOverScreenPrefab;
 
     [SerializeField]
     private bool playerHealthDependant = false;
@@ -29,6 +36,9 @@ public class ScreenGlitchController : MonoBehaviour
         screenGlitchers = GetComponents<ScreenGlitching>();
         player = GameObject.Find("Player");
         playerHealth = player.GetComponent<HealthComponent>();
+        popupCreator = GameObject.Find("PopupSpawner").GetComponent<PopupCreator>();
+        canvas = GameObject.Find("Canvas");
+
         if (playerHealthDependant)
         {
             player.GetComponent<Player.Player>().DamagedPlayer += UpdateGlitching;
@@ -109,6 +119,16 @@ public class ScreenGlitchController : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = false;
         player.GetComponent<Player.Player>().DamagedPlayer -= UpdateGlitching;
         StartCoroutine(GlitchOut());
+
+        deathScreen = Instantiate(gameOverScreenPrefab, canvas.transform);
+        StartCoroutine(GoToMainMenu());
+    }
+
+    private IEnumerator GoToMainMenu()
+    {
+        yield return new WaitForSeconds(5.0f);
+        Destroy(deathScreen);
+        //GO TO MAIN MENU
     }
 
     private IEnumerator GlitchOut()

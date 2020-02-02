@@ -40,8 +40,6 @@ namespace Player
             controller.FiringWeapon += OnFiringWeapon;
             controller.SwitchingWeapon += OnSwitchingWeapon;
             OnPlayerDeath += PlayPlayerDeathSound;
-            GameStats.OnWaveEnd += HealPlayerAfterWave;
-            GameStats.OnRoundEnd += HealPlayerAfterRound;
         }
 
         private void RemoveListeners()
@@ -49,8 +47,6 @@ namespace Player
             controller.FiringWeapon -= OnFiringWeapon;
             controller.SwitchingWeapon -= OnSwitchingWeapon;
             OnPlayerDeath -= PlayPlayerDeathSound;
-            GameStats.OnWaveEnd -= HealPlayerAfterWave;
-            GameStats.OnRoundEnd -= HealPlayerAfterRound;
         }
 
         private void OnFiringWeapon()
@@ -108,16 +104,6 @@ namespace Player
         public void UpgradeFireRate(float pTotalPercentUpgrade)
         {
             AbstractWeapon.TotalFireRateIncrease = pTotalPercentUpgrade;
-        }
-
-        public void HealPlayerAfterWave()
-        {
-            healthComponent.ChangeHealth(healthComponent.GetMaxHealth() * 0.1f);
-        }
-
-        public void HealPlayerAfterRound()
-        {
-            healthComponent.ChangeHealth(healthComponent.GetMaxHealth());
         }
     }
 }

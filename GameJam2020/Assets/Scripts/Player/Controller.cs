@@ -18,29 +18,16 @@ namespace Player
         private Animator _animator;
 
         private int _lastInput;
-        private bool _isInputEnabled;
 
         private void OnEnable()
         {
             cachedTransform = gameObject.transform;
             controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
-
-            GameStats.OnRoundStart += EnablePlayerInput;
-            GameStats.OnRoundEnd += DisablePlayerInput;
-        }
-
-        private void OnDisable()
-        {
-            GameStats.OnRoundStart -= EnablePlayerInput;
-            GameStats.OnRoundEnd -= DisablePlayerInput;
         }
 
         public void FixedUpdate()
         {
-            if(!_isInputEnabled)
-                return;
-
             Vector3 moveDirection = new Vector3(Input.GetAxis("LeftStickHorizontal"), 0, Input.GetAxis("LeftStickVertical"));
             Vector3 lookDirection = new Vector3(Input.GetAxis("RightStickHorizontal"), 0, Input.GetAxis("RightStickVertical"));
 
@@ -57,9 +44,6 @@ namespace Player
 
         private void Update()
         {
-            if(!_isInputEnabled)
-                return;
-
             CheckWeaponButtons();
         }
 
@@ -104,16 +88,6 @@ namespace Player
                 _animator.SetFloat("PlaybackSpeed", Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * -2);
             else
                 _animator.SetFloat("PlaybackSpeed", Mathf.Max(Mathf.Abs(pMoveDirection.x), Mathf.Abs(pMoveDirection.z)) * 2);
-        }
-
-        private void DisablePlayerInput()
-        {
-            _isInputEnabled = false;
-        }
-
-        private void EnablePlayerInput()
-        {
-            _isInputEnabled = true;
         }
     }
 }

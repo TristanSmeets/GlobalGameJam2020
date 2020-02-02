@@ -90,9 +90,6 @@ public class GameStats : MonoBehaviour
         _roundInProgress = true;
         _roundHasEnded = false;
 
-        if(OnRoundStart != null)
-            OnRoundStart();
-
         NextWave();
     }
 

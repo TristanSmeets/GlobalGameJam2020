@@ -48,5 +48,5 @@ Material:
     - _Value: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Emission: {r: 1024, g: 0, b: 0, a: 0}
+    - _Emission: {r: 5.992157, g: 3.6705883, b: 3.6705883, a: 0}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}

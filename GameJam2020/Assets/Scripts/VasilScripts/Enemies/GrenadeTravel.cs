@@ -17,6 +17,8 @@ public class GrenadeTravel : MonoBehaviour
     private int _shouldDieInFrames = 2;
     private int _damage;
 
+    private bool _playerDead;
+
     private GameObject canvas;
     [SerializeField]
     private GameObject textPrefab;

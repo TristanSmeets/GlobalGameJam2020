@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7865321394930487780}
   - component: {fileID: 7865321394930487783}
   - component: {fileID: 7865321394930487782}
+  - component: {fileID: 3092976581870195248}
   - component: {fileID: 1581249930}
   - component: {fileID: 1581249931}
   m_Layer: 0
@@ -60,11 +61,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a1dd071c2da08419441b58da5a4183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wavesPerRound: 2
-  _maxEnemiesAtOnce: 10
-  _amountOfEnemiesInFirstWave: 20
-  _xPercentAmountOfEnemiesInWaveIncreasePerYWave: {x: 100, y: 1}
+  _wavesPerRound: 3
+  _maxEnemiesAtOnce: 15
+  _amountOfEnemiesInFirstWave: 10
+  _xPercentAmountOfEnemiesInWaveIncreasePerYWave: {x: 10, y: 1}
   _timeBetweenWaves: 5
+--- !u!114 &3092976581870195248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865321394930487781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0624fd6f28d3594aae491731ce9bbd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthUpgradePercentage: 50
+  _damageUpgradePercentage: 20
+  _movementSpeedUpgradePercentage: 10
+  _fireRateUpgradePercentage: 10
+  _healthUpgradeDRPerUpgradePercentage: 10
+  _damageUpgradeDRPerUpgradePercentage: 10
+  _movementSpeedUpgradeDRPerUpgradePercentage: 5
+  _fireRateUpgradeDRPerUpgradePercentage: 5
+  _minimumHealthPercentageUpgrade: 5
+  _minimumDamagePercentageUpgrade: 3
+  _minimumMovementSpeedPercentageUpgrade: 2
+  _minimumFireRatePercentageUpgrade: 2
 --- !u!114 &1581249930
 MonoBehaviour:
   m_ObjectHideFlags: 0

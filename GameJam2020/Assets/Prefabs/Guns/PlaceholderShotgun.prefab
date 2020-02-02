@@ -146,5 +146,9 @@ MonoBehaviour:
     FireRate: 0.5
     FireRange: 10
     ProjectileSpeed: 25
+  weaponKnockbackAmount: -20
+  weaponKnockbackSpeed: 40
+  weaponUnKnockbackSpeed: 20
+  weaponKnockbackAngle: 0
   offsetRange: {x: 15, y: 7.5}
   pellets: 4

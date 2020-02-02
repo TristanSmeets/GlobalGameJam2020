@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GrenadeTravel : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class GrenadeTravel : MonoBehaviour
     private float _fuseTime;
     private int _shouldDieInFrames = 2;
     private int _damage;
+
+    private GameObject canvas;
+    [SerializeField]
+    private GameObject textPrefab;
+    private TextMeshProUGUI textMeshProUGUI;
+    [SerializeField]
+    private GameObject explosionPrefab;
 
     void Start()
     {
@@ -31,10 +39,28 @@ public class GrenadeTravel : MonoBehaviour
                 }
             }
         }
+
+        TextInit();
+    }
+
+    private void TextInit()
+    {
+        canvas = GameObject.Find("Canvas");
+        if(canvas && textPrefab)
+        {
+            GameObject instantiatedText = Instantiate(textPrefab, canvas.transform);
+            textMeshProUGUI = instantiatedText.GetComponent<TextMeshProUGUI>();
+            textMeshProUGUI.text = Mathf.Ceil(_fuseTime).ToString();
+
+            Vector3 scrPoint = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
+            textMeshProUGUI.rectTransform.position = scrPoint;
+        }
     }
 
     void Update()
     {
+        Text();
+
         float distCovered = (Time.time - _startTime) * 30;
         float fracJourney = distCovered / _travelLenght;
         transform.position = Vector3.Lerp(_startPos, _endPos, fracJourney);
@@ -56,14 +82,23 @@ public class GrenadeTravel : MonoBehaviour
             return;
 
         _fuseTime -= Time.deltaTime;
-        transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 2;
         if(_fuseTime <= 0)
         {
             _damageCollider.enabled = true;
             if(_shouldDieInFrames == 0)
+            {
+                Instantiate(explosionPrefab, transform.position, Quaternion.Euler(0, 0, 0), transform.parent);
+                Destroy(textMeshProUGUI.gameObject);
                 Destroy(this.gameObject);
+            }
             _shouldDieInFrames--;
         }
+    }
+
+    private void OnDestroy()
+    {
+        int rand = Random.Range(0, 1);
+        GameObject.Find("GameManager").GetComponent<SoundManagement>().PlayAudioClip(GameObject.Find("GameManager").GetComponent<SoundManagement>().AudioClips[rand]);
     }
 
     public void Init(Vector3 pTargetLocation, float pFuseTime, int pDamage)
@@ -96,6 +131,16 @@ public class GrenadeTravel : MonoBehaviour
         {
             if(_damageCollider.enabled)
                 other.GetComponent<IDamageable>().TakeDamage(_damage);
+        }
+    }
+
+    private void Text()
+    {
+        if(canvas && textMeshProUGUI)
+        {
+            textMeshProUGUI.text = (Mathf.Round(_fuseTime * 10) * 0.1).ToString();
+            Vector3 scrPoint = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
+            textMeshProUGUI.rectTransform.position = scrPoint;
         }
     }
 }

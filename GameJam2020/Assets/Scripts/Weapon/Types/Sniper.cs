@@ -6,6 +6,13 @@ namespace Weapon
 {
     public class Sniper : AbstractWeapon
     {
+        private ParticleSystem particleSystem;
+
+        private void Start()
+        {
+            particleSystem = GetComponentInChildren<ParticleSystem>();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -18,19 +25,29 @@ namespace Weapon
         public override void FireWeapon()
         {
             cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer < 0)
+            if(cooldownTimer < 0)
             {
-                Projectile newProjectile = Instantiate(projectilePrefab, 
-                    projectileSpawn.position, 
+                particleSystem.Play();
+                Camera.main.GetComponent<CameraFollowPlayer>().ShakeCamera(0.1f, 1.5f);
+                WeaponKnockback(weaponKnockbackAmount);
+                Projectile newProjectile = Instantiate(projectilePrefab,
+                    projectileSpawn.position,
                     projectileSpawn.rotation).GetComponent<Projectile>();
                 newProjectile.SetProjectileStats(projectileStats);
                 cooldownTimer = weaponSpecifics.FireRate;
+
+                PlaySoundEffect(5);
             }
         }
 
         public override WeaponType GetWeaponType()
         {
             return WeaponType.SNIPER;
+        }
+
+        private void LateUpdate()
+        {
+            WeaponRotation();
         }
     }
 }

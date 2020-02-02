@@ -58,7 +58,7 @@ public class AIChunkyMonkeyBehavior : AIBehavior
                     {
                         if(_aiMoveToTarget.GetDistanceToTarget() > _enemyStats.AttackRange * 0.5f)
                         {
-                            _grenadeTossPos = _aiMoveToTarget.TargetTransform.position;
+                            _grenadeTossPos = _aiMoveToTarget.TargetTransform.position;// - Vector3.up * _aiMoveToTarget.TargetTransform.GetComponentInChildren<Collider>().bounds.extents.y;
                             _gotGrenadeTossPos = true;
                         }
                     }

@@ -21,11 +21,12 @@ Material:
     m_TexEnvs:
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: 3d16218f683c8704dbdb91d9b7fb8a11, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0.25, y: 0.25}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _FadeDistance: 0
     - _FogLength: 4.14
+    - _MaxDensity: 0.8
     m_Colors:
     - _FogColor: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseDirection: {r: 0, g: 1, b: 0, a: 0}

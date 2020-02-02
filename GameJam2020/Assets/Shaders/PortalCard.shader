@@ -6,6 +6,7 @@
 		_NoiseDirection("Noise Direction", Vector) = (1,0,0,0)
 		_FogColor("Fog Color", Color) = (1,1,1,1)
 		_FogLength("Fog Density", float) = 0.01
+		_MaxDensity("Max Density", float) = 0.8
 	}
 		SubShader
 	{
@@ -38,10 +39,12 @@
 
 			sampler2D _CameraDepthTexture;
 			sampler2D _NoiseTexture;
+			float4 _NoiseTexture_ST;
 			float4 _CameraDepthTexture_ST;
 			fixed4 _FogColor;
 			float _FogLength;
 			float4 _NoiseDirection;
+			float _MaxDensity;
 
 			v2f vert(appdata v)
 			{
@@ -60,14 +63,14 @@
 				float depth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, i.screenPos)) * 0.1 * _FogLength;
 
 				float dist = i.screenPos.w;
-				float noiseVal = tex2D(_NoiseTexture, i.uv + _NoiseDirection.xy * _Time.x);
-				float noiseVal2 = tex2D(_NoiseTexture, i.uv + float2(-_NoiseDirection.y, _NoiseDirection.x) * _Time.x);
+				float noiseVal = tex2D(_NoiseTexture, (i.wpos.xz * _NoiseTexture_ST) + _NoiseDirection.xy * _Time.x);
+				float noiseVal2 = tex2D(_NoiseTexture, (i.wpos.xz * _NoiseTexture_ST) + float2(-_NoiseDirection.y, _NoiseDirection.x) * _Time.x);
 				float noise = (noiseVal + noiseVal2) * 0.5;
 
 				depth -= noise;
 				float newDepth = saturate(depth - (dist * 0.1 * _FogLength));
 
-				return float4(_FogColor.xyz, min(newDepth, 1));
+				return float4(_FogColor.xyz, min(min(newDepth, 1), _MaxDensity));
 			}
 			ENDCG
 		}

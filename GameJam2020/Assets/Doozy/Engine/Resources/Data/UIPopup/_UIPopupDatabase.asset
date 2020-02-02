@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: _UIPopupDatabase
   m_EditorClassIdentifier: 
   PopupNames:
+  - MainMenu
   - RoundStartPopup
   Popups:
+  - {fileID: 11400000, guid: 3af75c27efb701c4db721728523feae6, type: 2}
   - {fileID: 11400000, guid: ae136a9f0153e334ab204902652dde70, type: 2}

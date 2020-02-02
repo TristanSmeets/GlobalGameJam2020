@@ -9,6 +9,12 @@ public class MainMenuFunctionality : MonoBehaviour
     [SerializeField] VideoPlayer videoPlayer = null;
     [SerializeField] private string scene = string.Empty;
     private bool startedGame = false;
+    private AudioSource bgMusic = null;
+
+    private void OnEnable()
+    {
+        bgMusic = GetComponent<AudioSource>();
+    }
 
     public void CloseApplication()
     {
@@ -21,6 +27,7 @@ public class MainMenuFunctionality : MonoBehaviour
         {
             return;
         }
+        bgMusic.Stop();
         videoPlayer.Play();
         StartCoroutine(LoadSceneAfterVideo(scene));
     }

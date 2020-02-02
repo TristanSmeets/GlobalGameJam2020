@@ -20,6 +20,7 @@ public abstract class AIBehavior : MonoBehaviour
     protected EnemyStats _enemyStats;
     protected GameStats _gameStats;
     protected CapsuleCollider _normalAttackCollider;
+    protected Renderer _renderer;
 
     protected bool _isWaiting = false;
     protected bool _isChasing = false;
@@ -29,6 +30,7 @@ public abstract class AIBehavior : MonoBehaviour
 
     private float _waitTimer;
     private float _stunTimer;
+    private float _glitch = 0.0f;
 
     protected virtual void Start()
     {
@@ -38,6 +40,7 @@ public abstract class AIBehavior : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _enemyStats = GetComponent<EnemyStats>();
         _gameStats = GameObject.Find("GameManager").GetComponent<GameStats>();
+        _renderer = GetComponent<Renderer>() ? GetComponent<Renderer>() : GetComponentInChildren<Renderer>();
 
         CapsuleCollider[] capsuleCols = GetComponents<CapsuleCollider>();
         if(capsuleCols.Length > 0)
@@ -117,6 +120,8 @@ public abstract class AIBehavior : MonoBehaviour
 
     public virtual void TakeDamage(int pHealthDamage, int pStunDamage)
     {
+        _glitch = 0;
+        StartCoroutine(Glitch());
         _enemyStats.CurrentHealth -= pHealthDamage;
         _enemyStats.CurrentStunHealth -= pStunDamage;
         if(_enemyStats.CurrentHealth <= 0)
@@ -128,6 +133,18 @@ public abstract class AIBehavior : MonoBehaviour
             Stun(0.25f);
             _enemyStats.CurrentStunHealth = _enemyStats.MaxStunHealth;
         }
+    }
+
+    private IEnumerator Glitch()
+    {
+        while(_glitch < 1)
+        {
+            _glitch += 0.01f;
+            _renderer.material.SetFloat("_Value", _glitch);
+            yield return null;
+        }
+        _glitch = 0;
+        yield return null;
     }
 
     public void TriggerDeath()

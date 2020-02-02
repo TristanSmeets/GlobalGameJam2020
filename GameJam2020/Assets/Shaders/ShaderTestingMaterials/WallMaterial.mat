@@ -24,7 +24,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 7b2f0e6ad78cf5b47aa2a8f92ef75b88, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1d337ce2641046e44a5b671e97a99ac8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap2:
+        m_Texture: {fileID: 2800000, guid: 9bb29476c7a839547a0d1690569949c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmmissionMap:
@@ -32,7 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 27304bb9fbe3dba4f9e79f9105503f3e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0dd0d0626f4a95f42ab467d76a281a5b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex2:
+        m_Texture: {fileID: 2800000, guid: 61ecf24d9c518124fbad2f7a7468c84d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
@@ -49,6 +57,7 @@ Material:
     - _MaxCubeDistance: 0.1
     - _Metallic: 1
     - _Seed: 1
+    - _Shift: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1.319508, g: 1.319508, b: 1.319508, a: 0}

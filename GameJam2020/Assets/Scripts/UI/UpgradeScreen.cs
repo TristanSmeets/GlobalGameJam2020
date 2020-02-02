@@ -49,6 +49,7 @@ public class UpgradeScreen : MonoBehaviour
 
     public void SelectUpgrade(int upgrade)
     {
+        upgradeTexts[(int)selectedUpgrade].SetText($"x {UpgradeText(selectedUpgrade)}");
         selectedUpgrade = (PlayerUpgrades.UpgradeType)upgrade;
         upgradeTexts[upgrade].SetText($"x {UpgradeText(selectedUpgrade) + 1}");
        

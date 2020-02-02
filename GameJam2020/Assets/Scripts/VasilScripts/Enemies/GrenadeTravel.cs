@@ -132,7 +132,6 @@ public class GrenadeTravel : MonoBehaviour
         {
             if(_damageCollider.enabled)
                 other.GetComponent<IDamageable>().TakeDamage(_damage);
-            print(_damage);
         }
     }
 

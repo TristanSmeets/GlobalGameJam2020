@@ -139,7 +139,7 @@ public abstract class AIBehavior : MonoBehaviour
     {
         while(_glitch < 1)
         {
-            _glitch += 0.01f;
+            _glitch += 0.05f;
             _renderer.material.SetFloat("_Value", _glitch);
             yield return null;
         }

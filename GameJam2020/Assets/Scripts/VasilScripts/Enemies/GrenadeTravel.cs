@@ -87,9 +87,7 @@ public class GrenadeTravel : MonoBehaviour
             _damageCollider.enabled = true;
             if(_shouldDieInFrames == 0)
             {
-                RaycastHit hit;
-                Physics.Raycast(transform.position, Vector3.down, out hit);
-                Instantiate(explosionPrefab, hit.point, Quaternion.Euler(0, 0, 0), transform.parent);
+                Instantiate(explosionPrefab, transform.position, Quaternion.Euler(0, 0, 0), transform.parent);
                 Destroy(textMeshProUGUI.gameObject);
                 Destroy(this.gameObject);
             }

@@ -4,6 +4,9 @@
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _NormalMap("Normal Map", 2D) = "bump" {}
+        _EmissionMap("Emissive Map", 2D) = "black" {}
+        [HDR]_Emission("Emission", Color) = (0,0,0,0)
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
@@ -12,6 +15,7 @@
         _GlitchDistance("Glitch Distance", float) = 0.1
         _Tess("Tessellation", float) = 16
         _Value("Time", Range(0, 1)) = 0
+            [Toggle]_InvertAxi("Invert Axi", float) = 0
     }
     SubShader
     {
@@ -23,6 +27,9 @@
         #pragma target 3.0
 
         sampler2D _MainTex;
+        sampler2D _NormalMap;
+        sampler2D _EmissionMap;
+        fixed4 _Emission;
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
@@ -32,6 +39,7 @@
         float _GlitchDistance;
         float _Tess;
         float _Value;
+        float _InvertAxi;
 
         struct Input
         {
@@ -61,7 +69,6 @@
         {
             if (_Glitching > 0.5)
             {
-
                 for (float i = 0; i < 5; i++)
                 {
                     float j = i + (((_Value * 2) - 1) * 6);
@@ -73,7 +80,11 @@
                     {
                         float4 wpos = mul(unity_ObjectToWorld, float4(0,0,0,1));
                         float dist = random(float2(j * 923.219, j * 453.127 * floor(wpos.x * 10) * floor(wpos.z * 10)));
-                        v.vertex.x += _GlitchDistance * ((dist * 2) - 1);
+                        
+                        if(!_InvertAxi)
+                            v.vertex.x += _GlitchDistance * ((dist * 2) - 1);
+                        else
+                            v.vertex.z += _GlitchDistance * ((dist * 2) - 1);
                     }
                 }
             }
@@ -83,6 +94,8 @@
         {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
+            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
+            o.Emission = tex2D(_EmissionMap, IN.uv_MainTex) * _Emission;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;

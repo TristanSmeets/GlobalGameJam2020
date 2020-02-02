@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
     private GameObject player;
+    private Player.Player playerPlayer;
     private Vector3 defaultOffset;
     private Vector3 adjustedOffset;
     private bool screenShake = false;
@@ -28,7 +29,9 @@ public class CameraFollowPlayer : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        playerPlayer = player.GetComponent<Player.Player>();
         defaultOffset = transform.position - player.transform.position;
+        playerPlayer.DamagedPlayer += DamagePlayerShake;
     }
 
     // Update is called once per frame
@@ -45,6 +48,11 @@ public class CameraFollowPlayer : MonoBehaviour
             shake = false;
             ShakeCamera(shakeTime);
         }
+    }
+
+    private void DamagePlayerShake(float _currentHealth)
+    {
+        ShakeCamera(0.5f);
     }
 
     private void MoveOffset()

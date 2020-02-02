@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ExplodeMaterial
+  m_Shader: {fileID: 4800000, guid: bbf1cce757a975543bf56b189d6e5080, type: 3}
+  m_ShaderKeywords: _GLITCHING_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: 9efb8dd8441ab4d45be13bcaa600c1cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 55931dc7685b85e4cad7d61008a14cc4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 2800000, guid: 25ad6cc422fa5634d9a3da3294d9289d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 8fa87e3892d97644d8e31e0100ffa89a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _GlitchDistance: 0.3
+    - _Glitching: 1
+    - _Glossiness: 0.7
+    - _InvertAxi: 0
+    - _Metallic: 1
+    - _OutlineSize: 0.04
+    - _Seed: 0.1
+    - _Tess: 32
+    - _Time: 0
+    - _Value: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 5.992157, g: 3.6705883, b: 3.6705883, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}

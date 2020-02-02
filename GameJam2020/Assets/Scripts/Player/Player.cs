@@ -84,5 +84,26 @@ namespace Player
             SoundManagement sm = GameObject.Find("GameManager").GetComponent<SoundManagement>();
             sm.PlayAudioClip(sm.AudioClips[2]);
         }
+
+        public void UpgradeHealth(float pTotalPercentUpgrade)
+        {
+            healthComponent.SetMaxHealth(stats.MaxHealth * (1 + pTotalPercentUpgrade * 0.01f));
+            healthComponent.ChangeHealth(99999);
+        }
+
+        public void UpgradeDamage(float pTotalPercentUpgrade)
+        {
+            AbstractWeapon.TotalDamageIncrease = pTotalPercentUpgrade;
+        }
+
+        public void UpgradeMovementSpeed(float pTotalPercentUpgrade)
+        {
+            controller.SetMovementSpeed(stats.MovementSpeed * (1 + pTotalPercentUpgrade * 0.01f));
+        }
+
+        public void UpgradeFireRate(float pTotalPercentUpgrade)
+        {
+            AbstractWeapon.TotalFireRateIncrease = pTotalPercentUpgrade;
+        }
     }
 }

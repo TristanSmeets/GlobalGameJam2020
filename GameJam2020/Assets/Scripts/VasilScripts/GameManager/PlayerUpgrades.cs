@@ -58,30 +58,16 @@ public class PlayerUpgrades : MonoBehaviour
     void Start()
     {
         _playerScript = GameObject.Find("Player").GetComponent<Player.Player>();
+    }
+
+    private void OnEnable()
+    {
         GameStats.OnRoundEnd += AddUpgradeToken;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            int rand = Random.Range(0, 4);
-            switch(rand)
-            {
-                case 0:
-                    UpgradePlayer(UpgradeType.Health);
-                    break;
-                case 1:
-                    UpgradePlayer(UpgradeType.Damage);
-                    break;
-                case 2:
-                    UpgradePlayer(UpgradeType.MovementSpeed);
-                    break;
-                case 3:
-                    UpgradePlayer(UpgradeType.FireRate);
-                    break;
-            }
-        }
+        GameStats.OnRoundEnd -= AddUpgradeToken;
     }
 
     public void UpgradePlayer(UpgradeType pTypeOfUpgrade)

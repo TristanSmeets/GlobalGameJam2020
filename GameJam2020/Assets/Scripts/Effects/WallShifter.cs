@@ -11,9 +11,6 @@ public class WallShifter : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<Renderer>();
-
-        GameStats.OnWaveStart += FadeToRed;
-        GameStats.OnWaveEnd += FadeToBlue;
     }
 
     private void FadeToRed()
@@ -42,7 +39,7 @@ public class WallShifter : MonoBehaviour
 
     private IEnumerator BlueFader()
     {
-        while (val > 0)
+        while(val > 0)
         {
             val -= 0.01f;
             renderer.sharedMaterial.SetFloat("_Shift", val);
@@ -54,8 +51,17 @@ public class WallShifter : MonoBehaviour
         yield return null;
     }
 
+    private void OnEnable()
+    {
+        GameStats.OnWaveStart += FadeToRed;
+        GameStats.OnWaveEnd += FadeToBlue;
+    }
+
     private void OnDisable()
     {
         renderer.sharedMaterial.SetFloat("_Shift", 0);
+
+        GameStats.OnWaveStart -= FadeToRed;
+        GameStats.OnWaveEnd -= FadeToBlue;
     }
 }

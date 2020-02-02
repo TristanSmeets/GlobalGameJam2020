@@ -46,7 +46,7 @@ public class GameStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnWaveEnd -= OnWaveEnd;
+        OnWaveEnd -= OnWaveEnded;
         UpgradeScreen.StartNextRound -= NextRound;
     }
 

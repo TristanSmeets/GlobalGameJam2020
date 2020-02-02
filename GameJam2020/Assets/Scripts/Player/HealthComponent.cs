@@ -38,4 +38,9 @@ public class HealthComponent : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 }

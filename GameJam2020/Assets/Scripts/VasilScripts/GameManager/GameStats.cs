@@ -54,7 +54,6 @@ public class GameStats : MonoBehaviour
     {
         if((Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Joystick1Button7)) && !_roundInProgress && _roundHasEnded)
         {
-
             if(OnRoundStart != null)
                 OnRoundStart();
             NextRound();
@@ -90,8 +89,6 @@ public class GameStats : MonoBehaviour
         _currentWave = 0;
         _roundInProgress = true;
         _roundHasEnded = false;
-        _waveInProgress = false;
-        _waveHasEnded = true;
 
         NextWave();
     }

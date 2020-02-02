@@ -8,6 +8,8 @@ public class AIExplodeBoyBehavior : AIBehavior
     private float _preparationForAttackDuration;
     [SerializeField]
     private GameObject _explodePrefab;
+    [SerializeField]
+    private GameObject _explosionPosition;
 
     private SphereCollider _deathCollider;
     private int _shouldDieInFrames = 4;
@@ -89,6 +91,6 @@ public class AIExplodeBoyBehavior : AIBehavior
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        Instantiate(_explodePrefab, transform.position, Quaternion.identity);
+        Instantiate(_explodePrefab, _explosionPosition.transform.position, Quaternion.identity);
     }
 }

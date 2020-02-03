@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: UIPopupLink_RoundStartPopup
   m_EditorClassIdentifier: 
   PopupName: RoundStartPopup
-  Prefab: {fileID: 4200785732183868859, guid: c29a372a16315db488446c04fc159ca4, type: 3}
+  Prefab: {fileID: 53690629265947629, guid: 506abdd6e27b9d74d86e5c66bb617715, type: 3}

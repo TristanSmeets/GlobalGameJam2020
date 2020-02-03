@@ -6,7 +6,7 @@ using TMPro;
 
 public class UpgradeScreen : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
+    private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
     private PlayerUpgrades playerUpgrades = null;
     private PlayerUpgrades.UpgradeType selectedUpgrade = PlayerUpgrades.UpgradeType.Damage;
     public static event Action StartNextRound = delegate { };
@@ -14,6 +14,7 @@ public class UpgradeScreen : MonoBehaviour
     private void OnEnable()
     {
         playerUpgrades = FindObjectOfType<PlayerUpgrades>();
+        upgradeTexts = GetComponentsInChildren<TextMeshProUGUI>();
         SetupUpgradeTexts();
     }
     

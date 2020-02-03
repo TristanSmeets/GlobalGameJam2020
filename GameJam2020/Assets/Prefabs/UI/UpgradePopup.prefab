@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4e07cb8099def41b4cc425f66a92dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstSelectedButton: {fileID: 53690629122683076}
 --- !u!1 &53690628619917769
 GameObject:
   m_ObjectHideFlags: 0
@@ -5566,6 +5567,7 @@ GameObject:
   - component: {fileID: 53690629265947625}
   - component: {fileID: 53690629265947626}
   - component: {fileID: 53690629265947627}
+  - component: {fileID: 1100722064340229467}
   m_Layer: 0
   m_Name: UpgradePopup
   m_TagString: Untagged
@@ -6299,6 +6301,18 @@ MonoBehaviour:
   UpdateHideProgressorOnShow: 0
   UpdateShowProgressorOnHide: 0
   UseOverlay: 1
+--- !u!114 &1100722064340229467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53690629265947629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fa4fa3c5af8b04b89951983a4c0425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &53690629482547926
 GameObject:
   m_ObjectHideFlags: 0

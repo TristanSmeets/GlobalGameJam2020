@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Doozy.Engine.UI;
 
 public class UpgradeScreen : MonoBehaviour
 {
+    [SerializeField] private UIButton firstSelectedButton = null;
     private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
     private PlayerUpgrades playerUpgrades = null;
     private PlayerUpgrades.UpgradeType selectedUpgrade = PlayerUpgrades.UpgradeType.Damage;
@@ -16,8 +18,9 @@ public class UpgradeScreen : MonoBehaviour
         playerUpgrades = FindObjectOfType<PlayerUpgrades>();
         upgradeTexts = GetComponentsInChildren<TextMeshProUGUI>();
         SetupUpgradeTexts();
+        firstSelectedButton.SelectButton();
     }
-    
+
     public void UpgradePlayer()
     {
         playerUpgrades.UpgradePlayer(selectedUpgrade);

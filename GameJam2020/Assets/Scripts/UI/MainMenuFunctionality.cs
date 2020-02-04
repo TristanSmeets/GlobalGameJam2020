@@ -6,15 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuFunctionality : MonoBehaviour
 {
-    [SerializeField] VideoPlayer videoPlayer = null;
     [SerializeField] private string scene = string.Empty;
     private bool startedGame = false;
-    private AudioSource bgMusic = null;
-
-    private void OnEnable()
-    {
-        bgMusic = GetComponent<AudioSource>();
-    }
 
     public void CloseApplication()
     {
@@ -27,30 +20,6 @@ public class MainMenuFunctionality : MonoBehaviour
         {
             return;
         }
-        bgMusic.Stop();
-        videoPlayer.Play();
-        StartCoroutine(LoadSceneAfterVideo(scene));
-    }
-
-    private IEnumerator LoadSceneAfterVideo(string sceneName)
-    {
-        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
-        async.allowSceneActivation = false;
-        if(Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-
-        while(!async.isDone)
-        {
-            if(async.progress>=0.9f)
-            {
-                if(!videoPlayer.isPlaying)
-                {
-                    async.allowSceneActivation = true;
-                }
-            }
-            yield return null;
-        }
+        SceneManager.LoadScene(scene);
     }
 }

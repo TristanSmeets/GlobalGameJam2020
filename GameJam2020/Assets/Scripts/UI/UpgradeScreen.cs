@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Doozy.Engine.UI;
 
 public class UpgradeScreen : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
+    [SerializeField] private UIButton firstSelectedButton = null;
+    private TextMeshProUGUI[] upgradeTexts = new TextMeshProUGUI[4]; 
     private PlayerUpgrades playerUpgrades = null;
     private PlayerUpgrades.UpgradeType selectedUpgrade = PlayerUpgrades.UpgradeType.Damage;
     public static event Action StartNextRound = delegate { };
@@ -14,9 +16,11 @@ public class UpgradeScreen : MonoBehaviour
     private void OnEnable()
     {
         playerUpgrades = FindObjectOfType<PlayerUpgrades>();
+        upgradeTexts = GetComponentsInChildren<TextMeshProUGUI>();
         SetupUpgradeTexts();
+        firstSelectedButton.SelectButton();
     }
-    
+
     public void UpgradePlayer()
     {
         playerUpgrades.UpgradePlayer(selectedUpgrade);

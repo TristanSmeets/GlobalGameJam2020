@@ -7,28 +7,25 @@ namespace Weapon
     public class Sniper : AbstractWeapon
     {
         private ParticleSystem particleSystem;
+        [SerializeField] private bool isPiercing = true;
 
         private void Start()
         {
             particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
-        private ProjectileStats _proj;
+        //private ProjectileStats _proj;
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            //projectileStats = new ProjectileStats(weaponSpecifics.ProjectileSpeed,
-            //    weaponSpecifics.Damage,
-            //    weaponSpecifics.Stun,
-            //    weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed,
-            //    true);
 
-            _proj = new ProjectileStats(weaponSpecifics.ProjectileSpeed,
+            projectileStats = new ProjectileStats(weaponSpecifics.ProjectileSpeed,
             weaponSpecifics.Damage,
             weaponSpecifics.Stun,
-            weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed);
-            cooldownTimer = weaponSpecifics.FireRate / (1 + TotalFireRateIncrease * 0.01f);
+            weaponSpecifics.FireRange / weaponSpecifics.ProjectileSpeed,
+            isPiercing);
+            cooldownTimer = 0;
         }
         public override void FireWeapon()
         {
@@ -41,8 +38,8 @@ namespace Weapon
                 Projectile newProjectile = Instantiate(projectilePrefab,
                     projectileSpawn.position,
                     projectileSpawn.rotation).GetComponent<Projectile>();
-                //newProjectile.SetProjectileStats(projectileStats);
-                newProjectile.SetProjectileStats(_proj);
+                newProjectile.SetProjectileStats(projectileStats);
+                //newProjectile.SetProjectileStats(_proj);
                 //cooldownTimer = weaponSpecifics.FireRate;
                 cooldownTimer = weaponSpecifics.FireRate / (1 + TotalFireRateIncrease * 0.01f);
 

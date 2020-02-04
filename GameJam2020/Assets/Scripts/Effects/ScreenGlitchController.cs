@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ScreenGlitching))]
 [ExecuteInEditMode]
@@ -128,6 +129,7 @@ public class ScreenGlitchController : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         Destroy(deathScreen);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
         //GO TO MAIN MENU
     }
 

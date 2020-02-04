@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallShifter : MonoBehaviour
 {
-    private Renderer renderer;
+    private new Renderer renderer;
     float val = 0;
 
     // Start is called before the first frame update

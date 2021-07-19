@@ -1,4 +1,6 @@
-# GlitchFX 
+# GlitchFix 
+
+![](https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/featured_image/2020/02/294864/game_0.png?itok=fICpLigm&timestamp=1580651089)
 
 A game made for the 2020 game jam.
 

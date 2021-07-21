@@ -1,4 +1,4 @@
-// Copyright (c) 2015 - 2019 Doozy Entertainment. All Rights Reserved.
+// Copyright (c) 2015 - 2020 Doozy Entertainment. All Rights Reserved.
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
@@ -89,6 +89,16 @@ namespace Doozy.Engine.UI
 
         #region Unity Methods
 
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void RunOnStart()
+        {
+            ApplicationIsQuitting = false;
+            CurrentVisibleQueuePopup = null;
+            PopupQueue.Clear();
+        }
+#endif
+        
         private void Awake()
         {
             if (s_instance != null && s_instance != this)

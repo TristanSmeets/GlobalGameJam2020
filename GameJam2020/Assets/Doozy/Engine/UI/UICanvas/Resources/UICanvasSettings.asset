@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4072814a6baa62045b119994d13bcd72, type: 3}
   m_Name: UICanvasSettings
   m_EditorClassIdentifier: 
-  database: {fileID: 11400000, guid: 5bf14ae6bf1378f47add8f3ebc5b39cb, type: 2}
+  database: {fileID: 11400000, guid: 853cb3461e99bf847b74ced4e854674a, type: 2}
   DontDestroyCanvasOnLoad: 1
   RenamePrefix: 'Canvas - '
   RenameSuffix: 

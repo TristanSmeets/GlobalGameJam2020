@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fefd9de8b7cd048ae2d079f0bf00da, type: 3}
   m_Name: UIViewSettings
   m_EditorClassIdentifier: 
-  database: {fileID: 11400000, guid: 25cc6056ce40e8b47bf4ea76336cedf2, type: 2}
+  database: {fileID: 11400000, guid: a4e54be736f99c946ab930c7dbe92346, type: 2}
   TargetOrientation: 2
   BehaviorAtStart: 0
   CustomStartAnchoredPosition: {x: 0, y: 0, z: 0}

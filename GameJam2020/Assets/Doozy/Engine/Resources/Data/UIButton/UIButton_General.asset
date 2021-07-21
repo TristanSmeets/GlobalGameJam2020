@@ -16,8 +16,4 @@ MonoBehaviour:
   DatabaseType: 0
   Names:
   - Back
-  - Confirm
-  - ExitGame
-  - StartGame
   - Unnamed
-  - Upgrade

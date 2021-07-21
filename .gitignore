@@ -411,3 +411,5 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/unity,visualstudio
 GameJam2020/Library/
 GameJam2020/Temp/
+GameJam2020/.idea/
+GameJam2020/Assets/Doozy/Examples/
